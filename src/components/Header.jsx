@@ -30,7 +30,6 @@ class Header extends React.Component {
   render() {
     const { name, score } = this.props;
     const { gravatar } = this.state;
-    console.log(gravatar);
     return (
       <header className="feedback-header">
         <img

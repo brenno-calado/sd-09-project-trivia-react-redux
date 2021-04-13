@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchToken } from '../actions/fetchToken';
-import { userLogin } from '../actions/index';
+import { userLogin } from '../actions';
 // import '../App.css';
 import '../styles/Login.css';
 import logo from '../trivia.png';
