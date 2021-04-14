@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { IoPlayOutline } from 'react-icons/io5';
 import { playerLogin, requestApiToken, requestApiQuestions } from '../redux/actions';
 import SelectSettings from '../Components/SelectSettings';
+import Cube from './cube';
+import './login.css';
 
 class Login extends Component {
   constructor(props) {
@@ -17,6 +20,7 @@ class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.play = this.play.bind(this);
     this.createLocalStorage = this.createLocalStorage.bind(this);
+    this.createBtnPlay = this.createBtnPlay.bind(this);
   }
 
   createLocalStorage() {
@@ -56,39 +60,58 @@ class Login extends Component {
     this.createLocalStorage();
   }
 
-  render() {
-    const { email, name, disableBtn } = this.state;
+  createBtnPlay() {
+    const { disableBtn } = this.state;
     return (
-      <div>
-        <input
-          data-testid="input-player-name"
-          type="text"
-          name="name"
-          value={ name }
-          onChange={ this.handleChange }
-          placeholder="Informe seu nome"
-          autoComplete="off"
-        />
-        <input
-          data-testid="input-gravatar-email"
-          type="text"
-          name="email"
-          value={ email }
-          onChange={ this.handleChange }
-          placeholder="Informe seu email"
-          autoComplete="off"
-        />
-        <Link to="/trivia">
-          <button
-            data-testid="btn-play"
-            type="button"
-            disabled={ disableBtn }
-            onClick={ this.play }
-          >
-            Jogar
-          </button>
-        </Link>
-        <SelectSettings />
+      <Link to="/trivia">
+        <button
+          className="btnLogin play"
+          data-testid="btn-play"
+          type="button"
+          disabled={ disableBtn }
+          onClick={ this.play }
+        >
+          <IoPlayOutline className="play" />
+        </button>
+      </Link>
+    );
+  }
+
+  render() {
+    const { email, name } = this.state;
+    return (
+      <div className="grid">
+        <div className="backgroundLogin">
+          <div className="container">
+            <Cube />
+            <div className="inputContainer">
+              <input
+                className="inputLogin"
+                data-testid="input-player-name"
+                type="text"
+                name="name"
+                value={ name }
+                onChange={ this.handleChange }
+                placeholder="Informe seu nome"
+                autoComplete="off"
+              />
+              <input
+                className="inputLogin"
+                data-testid="input-gravatar-email"
+                type="text"
+                name="email"
+                value={ email }
+                onChange={ this.handleChange }
+                placeholder="Informe seu email"
+                autoComplete="off"
+              />
+            </div>
+            <div className="buttonContainer">
+              { this.createBtnPlay() }
+              <SelectSettings />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

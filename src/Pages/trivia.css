@@ -1,0 +1,13 @@
+.trivia {
+  background-size: cover;
+  background-image: url('https://blog.classlist.com/wp-content/uploads/2020/04/iStock-1032132026-1.jpg');
+}
+
+
+.triviaCards {
+  width: 100%;
+  height: 85vh;
+  display: grid;
+  grid-template-columns: 10% 60% 30%;
+  grid-template-rows: 20% 60% 20%;
+}

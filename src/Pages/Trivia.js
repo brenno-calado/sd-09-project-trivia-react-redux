@@ -8,6 +8,7 @@ import TriviaCardsBA from '../Components/TriviaCardsBA';
 import TriviaCardsMA from '../Components/TriviaCardsMA';
 import './answers.css';
 import Feedback from './Feedback';
+import './trivia.css';
 
 class Trivia extends Component {
   constructor(props) {
@@ -39,9 +40,11 @@ class Trivia extends Component {
       return <Feedback />;
     }
     return (
-      <div>
+      <div className="trivia">
         <Header />
-        { this.update() }
+        <div className="triviaCards">
+          { this.update() }
+        </div>
       </div>
     );
   }

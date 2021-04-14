@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FiSettings } from 'react-icons/fi';
 // import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 
@@ -7,7 +8,7 @@ class SelectSettings extends Component {
     super();
 
     this.state = {
-      btnSettings: 'Setup',
+      btnSettings: <FiSettings className="setting" />,
       renderSettings: false,
     };
 
@@ -34,7 +35,7 @@ class SelectSettings extends Component {
     return (
       <div>
         <button
-          className="btn"
+          className="btnLogin setup"
           type="button"
           data-testid="btn-settings"
           onClick={ this.changeState }

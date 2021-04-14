@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { AiOutlineDoubleRight } from 'react-icons/ai';
 import { rightAnswers, updateIndex, wrongAnswers, playerScore } from '../redux/actions';
 import Timer from './timer';
 import CORRECT from './correct';
+import './triviaCard.css';
 
 class MultipleAnswers extends Component {
   constructor(props) {
@@ -14,7 +16,6 @@ class MultipleAnswers extends Component {
       nextButton: true,
       correctAnswer: CORRECT,
       btnDisplayed: false,
-      // tratamento pros botoes apos timer
       btnDisabled: false,
       show: true,
     };
@@ -34,6 +35,12 @@ class MultipleAnswers extends Component {
   updateLocalStorage() {
     const { player } = this.props;
     localStorage.setItem('state', JSON.stringify({ player }));
+  }
+
+  decodeHtml(html) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = html;
+    return txt.value;
   }
 
   endTime() {
@@ -108,12 +115,13 @@ class MultipleAnswers extends Component {
   createNextBtn(click, state) {
     return (
       <button
+        className="next"
         data-testid="btn-next"
         type="button"
         onClick={ click }
         disabled={ state }
       >
-        next
+        <AiOutlineDoubleRight />
       </button>
     );
   }
@@ -133,16 +141,20 @@ class MultipleAnswers extends Component {
       show,
     } = this.state;
     const { question } = this.props;
-    // precisa jogar esse choice pra dentro de uma função para deixar as questões com respostas randomicas
     const choice = [...question.incorrect_answers, question.correct_answer];
     let index = 0;
     return (
-      <>
-        <div>
-          <h3 data-testid="question-category">
-            { question.category }
-          </h3>
-          <p data-testid="question-text">{ question.question }</p>
+      <div className="triviaCard">
+        <h3 className="category" data-testid="question-category">
+          { this.decodeHtml(question.category) }
+        </h3>
+        <p
+          className="text"
+          data-testid="question-text"
+        >
+          { this.decodeHtml(question.question) }
+        </p>
+        <div className="answers">
           {choice.map((answer) => {
             const dataTestId = this.validateAnswers(answer, index);
             if (dataTestId !== correctAnswer) index += 1;
@@ -156,17 +168,16 @@ class MultipleAnswers extends Component {
                 data-testid={ dataTestId }
                 onClick={ this.answerCheck }
               >
-                { answer }
+                { this.decodeHtml(answer) }
               </button>);
           })}
-          { btnDisplayed ? this.createNextBtn(this.nextQuestion, nextButton)
-            : null}
         </div>
-        <div>
-          Timer:
+        { btnDisplayed ? this.createNextBtn(this.nextQuestion, nextButton)
+          : null}
+        <div className="timer">
           { show ? this.renderTimer() : null }
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { AiOutlineDoubleRight } from 'react-icons/ai';
 import { rightAnswers, updateIndex, wrongAnswers, playerScore } from '../redux/actions';
 import Timer from './timer';
 import CORRECT from './correct';
+import './triviaCard.css';
 
 class BooleanAnswers extends Component {
   constructor(props) {
@@ -30,6 +32,13 @@ class BooleanAnswers extends Component {
   componentDidUpdate() {
     this.updateLocalStorage();
     this.endTime();
+  }
+
+  // href = Vallin
+  decodeHtml(html) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = html;
+    return txt.value;
   }
 
   updateLocalStorage() {
@@ -110,12 +119,13 @@ class BooleanAnswers extends Component {
   createNextBtn(click, state) {
     return (
       <button
+        className="next"
         data-testid="btn-next"
         type="button"
         onClick={ click }
         disabled={ state }
       >
-        next
+        <AiOutlineDoubleRight />
       </button>
     );
   }
@@ -138,14 +148,17 @@ class BooleanAnswers extends Component {
     const answers = ['True', 'False'];
     const index = 0;
     return (
-      <>
-        <div>
-          <div>
-            <h3 data-testid="question-category">
-              { question.category }
-            </h3>
-            <p data-testid="question-text">{ question.question }</p>
-          </div>
+      <div className="triviaCard">
+        <h3 className="category" data-testid="question-category">
+          { this.decodeHtml(question.category) }
+        </h3>
+        <p
+          className="text"
+          data-testid="question-text"
+        >
+          { this.decodeHtml(question.question) }
+        </p>
+        <div className="answers">
           { answers.map((option) => {
             const dataTestId = this.validateAnswers(option, index);
             return (
@@ -158,17 +171,16 @@ class BooleanAnswers extends Component {
                 data-testid={ dataTestId }
                 onClick={ this.answerCheck }
               >
-                { option }
+                { this.decodeHtml(option) }
               </button>);
           })}
-          { btnDisplayed ? this.createNextBtn(this.nextQuestion, nextButton)
-            : null}
         </div>
-        <div>
-          Timer:
+        { btnDisplayed ? this.createNextBtn(this.nextQuestion, nextButton)
+          : null}
+        <div className="timer">
           { show ? this.renderTimer() : null }
         </div>
-      </>
+      </div>
     );
   }
 }

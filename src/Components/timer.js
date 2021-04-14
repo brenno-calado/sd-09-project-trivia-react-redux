@@ -42,7 +42,9 @@ class Timer extends Component {
     const { getCounter } = this.props;
     getCounter(count);
     return (
-      <span className="timer">{ count }</span>
+      <div>
+        <span className="counter">{ count }</span>
+      </div>
     );
   }
 }
