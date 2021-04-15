@@ -29,6 +29,7 @@ class GameScreen extends Component {
       colorQuestion: false,
       score: 0,
       feedbackScreen: false,
+      assertions: 0,
     };
     this.nextQuestion = this.nextQuestion.bind(this);
     this.loadingQuestions = this.loadingQuestions.bind(this);
@@ -57,6 +58,8 @@ class GameScreen extends Component {
     };
 
     localStorage.setItem('state', JSON.stringify({ player: score }));
+
+    this.setState({ assertions: player.assertions });
   }
 
   calcScore(difficulty) {
@@ -177,7 +180,7 @@ class GameScreen extends Component {
       ...orderQuestions.incorrect_answers,
       orderQuestions.correct_answer,
     ];
-    const answers = answersArray.sort();
+    const answers = answersArray;
 
     const colorButtons = (answer) => {
       if (answer === orderQuestions.correct_answer) {
@@ -211,11 +214,13 @@ class GameScreen extends Component {
 
   render() {
     const { questions,
-      numberOFQuestion, loading, timer, disabled, colorQuestion, feedbackScreen,
-    } = this.state;
+      numberOFQuestion, loading, timer, disabled, colorQuestion, feedbackScreen, assertions } = this.state;
     const orderQuestions = questions[numberOFQuestion];
     if (loading) return <h1>Loading...</h1>;
     if (feedbackScreen) return <Redirect to="/feedback" />;
+
+    const calcBar = (`${((questions.length / 100 * assertions) * 100) * 4}%`);
+
     return (
       <>
         { this.header() }
@@ -238,6 +243,7 @@ class GameScreen extends Component {
               )
               : '' }
           </S.NextButtonContainer>
+          <S.DynamicBar porcentageBar={ calcBar } />
           <S.TopBar>
             <h3 data-testid="question-category">{orderQuestions.type}</h3>
             <S.Timer

@@ -6,7 +6,7 @@ import * as S from './styled';
 
 import { fetchAPI } from '../../redux/action';
 
-const TREE_SECONDS = 3000;
+const ONE_SECONDS = 1000;
 
 class Login extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class Login extends Component {
       this.setState({
         submmit: true,
       });
-    }, TREE_SECONDS);
+    }, ONE_SECONDS);
   }
 
   handleSettings() {

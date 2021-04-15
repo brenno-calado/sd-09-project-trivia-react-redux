@@ -97,6 +97,15 @@ export const Timer = styled.span`
       transform: translate3d(4px, 0, 0);
     }
   }
+
+  @keyframes seila {
+    from {
+        opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 `;
 
 export const TextQuestion = styled.p`
@@ -128,4 +137,11 @@ export const NextButtonContainer = styled.section`
     font-size: 1rem;
 
   }
+`;
+
+export const DynamicBar = styled.div`
+  height: .8rem;
+  background: blue;
+  width: ${(props) => props.porcentageBar};
+  transition: 1s;
 `;

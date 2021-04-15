@@ -43,7 +43,7 @@ export const AnimationContiner = styled.div`
   background: #555;
   width: 100%;
   height: 100vh;
-  animation: ${(props) => props.animation} 3s;
+  animation: ${(props) => props.animation} 1s;
 
    @keyframes slide {
      from {
