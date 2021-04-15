@@ -1,31 +1,45 @@
-import './css/question.css';
 import React from 'react';
-import { connect } from 'react-redux';
 import { string, objectOf } from 'prop-types';
+import { connect } from 'react-redux';
+import { handleAssertions, resetTimer, startTimer, tick, wasAnsweredAction }
+  from '../redux/actions';
+import CountdownTimer from './components/CountdownTimer';
+import Feedback from './Feedback';
+import './css/question.css';
 
 class Question extends React.Component {
   constructor(props) {
     super(props);
-
+    this.btnStyle = this.btnStyle.bind(this);
+    this.clearStyle = this.clearStyle.bind(this);
     this.createHeader = this.createHeader.bind(this);
+    this.handleIndex = this.handleIndex.bind(this);
     this.inQuestion = this.inQuestion.bind(this);
-    this.testId = this.testId.bind(this);
     this.multiQuestion = this.multiQuestion.bind(this);
+    this.boolQuestion = this.boolQuestion.bind(this);
+    this.verifyAnswers = this.verifyAnswers.bind(this);
+    this.stopWatch = this.stopWatch.bind(this);
+    this.calculatePoints = this.calculatePoints.bind(this);
+    this.displayGame = this.displayGame.bind(this);
+    this.state = { indexQuestion: 0, numQuestion: 4, TIMER_RESET_CHECK: 30 };
   }
 
   createHeader() {
-    const { playerState: { name, score, gravatarEmail } } = this.props;
-    return (
-      <header className="header">
-        <img
-          src={ `https://www.gravatar.com/avatar/${gravatarEmail}` }
-          alt="imagem do Gravatar"
-          data-testid="header-profile-picture"
-        />
-        <h4 data-testid="header-player-name">{ name }</h4>
-        <h4 data-testid="header-score">{ score }</h4>
-      </header>
-    );
+    const state = JSON.parse(localStorage.getItem('state'));
+    if (state) {
+      const { name, score, gravatarEmail } = state.player;
+      return (
+        <header className="header">
+          <img
+            src={ `https://www.gravatar.com/avatar/${gravatarEmail}` }
+            alt="imagem do Gravatar"
+            data-testid="header-profile-picture"
+          />
+          <h4 data-testid="header-player-name">{ name }</h4>
+          <h4 data-testid="header-score">{ score }</h4>
+        </header>
+      );
+    }
   }
 
   testId(element, index) {
@@ -35,24 +49,65 @@ class Question extends React.Component {
     );
   }
 
-  multiQuestion({ correct_answer: correctAnswer,
-    incorrect_answers: incorrectAnswers, category, question }, index) {
+  stopWatch() {
+    const { propWasAnswered, timerId } = this.props;
+    clearInterval(timerId);
+    propWasAnswered();
+    this.btnStyle();
+  }
+
+  calculatePoints(remainingTime, difficulty) {
+    if (remainingTime === 0) { return; }
+    const state = JSON.parse(localStorage.getItem('state'));
+    const difficultyMultipliers = { easy: 1, medium: 2, hard: 3 };
+    const basePoints = 10;
+    const points = basePoints + (remainingTime * difficultyMultipliers[difficulty]);
+    state.player.score += points;
+    state.player.assertions += 1;
+    localStorage.setItem('state', JSON.stringify(state));
+  }
+
+  verifyAnswers(value, correct, difficulty) {
+    const { propHandleAssertions, timer } = this.props;
+    this.stopWatch();
+    if (value === correct) {
+      propHandleAssertions(1);
+      this.calculatePoints(timer, difficulty);
+    }
+  }
+
+  handleIndex() {
+    this.clearStyle();
+    const { indexQuestion, numQuestion } = this.state;
+    const { propResetTimer } = this.props;
+    propResetTimer();
+    if (indexQuestion <= numQuestion) {
+      this.setState((prev) => ({ indexQuestion: prev.indexQuestion + 1 }));
+    }
+  }
+
+  multiQuestion({ correct_answer: correctAnswer, sortedOptions, difficulty,
+    incorrect_answers: incorrectAnswers, category, question }, id) {
     const options = [...incorrectAnswers, correctAnswer];
-    const random = 0.5;
+    const { wasAnswered } = this.props;
+    const { verifyAnswers } = this;
     return (
-      <div key={ index } className="mult-answer">
+      <div className="mult-answer">
+        <CountdownTimer />
         <div className="mult-container">
           <section className="mult-question">
             <h3 data-testid="question-category">{ category }</h3>
             <p data-testid="question-text">{ question }</p>
           </section>
           <aside className="mult-aside">
-            { [...options].sort(() => random - Math.random()).map((btn) => (
+            { [...sortedOptions].map((btn, index) => (
               <button
                 type="button"
+                className={ btn === correctAnswer ? 'btnCorrect' : 'btnIncorrect' }
                 key={ index }
-                data-testId={ btn === correctAnswer
-                  ? 'correct-answer'
+                disabled={ wasAnswered }
+                onClick={ () => verifyAnswers(btn, correctAnswer, difficulty) }
+                data-testid={ btn === correctAnswer ? id
                   : `wrong-answer-${options.indexOf(btn)}` }
               >
                 { btn }
@@ -60,53 +115,97 @@ class Question extends React.Component {
             )) }
           </aside>
         </div>
-        <button type="button">PRÓXIMO</button>
+      </div>
+    );
+  }
+
+  boolQuestion({ category, question, difficulty, correct_answer: correctAnswer }, id) {
+    const { wasAnswered } = this.props;
+    return (
+      <div className="boll-answer">
+        <CountdownTimer />
+        <section className="bool-question">
+          <h3 data-testid="question-category">{ category }</h3>
+          <p data-testid="question-text">{ question }</p>
+        </section>
+        <aside className="bool-aside">
+          <button
+            type="button"
+            data-testid={ correctAnswer === 'True' ? id : 'wrong-answer-0' }
+            className={ correctAnswer === 'True' ? 'btnCorrect' : 'btnIncorrect' }
+            onClick={ () => this.verifyAnswers('True', correctAnswer, difficulty) }
+            disabled={ wasAnswered }
+          >
+            Verdadeiro
+          </button>
+          <button
+            type="button"
+            data-testid={ correctAnswer === 'False' ? id : 'wrong-answer-0' }
+            className={ correctAnswer === 'False' ? 'btnCorrect' : 'btnIncorrect' }
+            onClick={ () => this.verifyAnswers('False', correctAnswer, difficulty) }
+            disabled={ wasAnswered }
+          >
+            Falso
+          </button>
+        </aside>
       </div>
     );
   }
 
   inQuestion() {
-    const { dataAnswer } = this.props;
-    const { multiQuestion } = this;
-    return dataAnswer.map((element, index) => {
-      if (element.type === 'boolean') {
-        return (
-          <div key={ index } className="boll-answer">
-            <section className="bool-question">
-              <h3 data-testid="question-category">{ element.category }</h3>
-              <p data-testid="question-text">{ element.question }</p>
-            </section>
-            <aside className="bool-aside">
-              <button
-                type="button"
-                data-testid=""
-                value={ element.correct_answer }
-              >
-                Verdadeiro
-              </button>
-              <button
-                type="button"
-                data-testid=""
-                value={ element.incorrect_answers }
-              >
-                Falso
-              </button>
-            </aside>
-            <button type="button">PRÓXIMO</button>
-          </div>
-        );
-      }
-      return multiQuestion(element, index);
+    const { dataAnswer, propStartTimer, timer, wasAnswered } = this.props;
+    const { multiQuestion, boolQuestion, stopWatch, calculatePoints } = this;
+    const { indexQuestion, TIMER_RESET_CHECK } = this.state;
+    const idTestCorrect = 'correct-answer';
+    console.log(dataAnswer[indexQuestion]);
+    if (timer === TIMER_RESET_CHECK && wasAnswered === true) { propStartTimer(); }
+    if (timer === 0 && wasAnswered === false) { stopWatch(); calculatePoints(0); }
+    if (dataAnswer[indexQuestion].type === 'boolean') {
+      return boolQuestion(dataAnswer[indexQuestion], idTestCorrect);
+    }
+    return multiQuestion(dataAnswer[indexQuestion], idTestCorrect);
+  }
+
+  clearStyle() {
+    document.querySelector('.btnCorrect').style.border = '';
+    document.querySelectorAll('.btnIncorrect').forEach((bt) => { bt.style.border = ''; });
+    document.querySelector('.btn-next').style.visibility = 'hidden';
+  }
+
+  btnStyle() {
+    document.querySelector('.btnCorrect').style.border = '3px solid rgb(6, 240, 15)';
+    document.querySelectorAll('.btnIncorrect').forEach((btn) => {
+      btn.style.border = '3px solid red';
     });
+    document.querySelector('.btn-next').style.visibility = 'visible';
+  }
+
+  displayGame() {
+    const { dataAnswer } = this.props;
+    const { indexQuestion } = this.state;
+    const lastIndex = 5;
+    if (dataAnswer) {
+      if (indexQuestion < lastIndex) {
+        return this.inQuestion();
+      } return <Feedback />;
+    } return <div className="carregando">Carregando</div>;
   }
 
   render() {
-    const { dataAnswer } = this.props;
+    const { handleIndex } = this;
     return (
       <div className="question">
         { this.createHeader() }
-        <h1>Game</h1>
-        { dataAnswer ? this.inQuestion() : 'Carregando' }
+        <h1>Trivia Game</h1>
+        { this.displayGame() }
+        <button
+          type="button"
+          data-testid="btn-next"
+          className="btn-next"
+          onClick={ () => handleIndex() }
+        >
+          PRÓXIMO
+        </button>
       </div>
     );
   }
@@ -115,7 +214,21 @@ class Question extends React.Component {
 const mapStateToProps = ((state) => ({
   dataAnswer: state.dataGame.data.results,
   playerState: state.player,
+  timer: state.timer.timer,
+  wasAnswered: state.timer.wasAnswered,
+  timerId: state.timer.timerId,
 }));
+
+const mapDispatchToProps = (dispatch) => ({
+  propHandleAssertions: (assertions) => dispatch(handleAssertions(assertions)),
+  propStartTimer: () => {
+    const INTERVAL = 1000;
+    const timerId = setInterval(() => { dispatch(tick()); }, INTERVAL);
+    dispatch(startTimer(timerId));
+  },
+  propResetTimer: () => dispatch(resetTimer()),
+  propWasAnswered: () => dispatch(wasAnsweredAction()),
+});
 
 Question.propTypes = {
   dataAnswer: string,
@@ -125,4 +238,4 @@ Question.propTypes = {
   }),
 }.isRequired;
 
-export default connect(mapStateToProps)(Question);
+export default connect(mapStateToProps, mapDispatchToProps)(Question);

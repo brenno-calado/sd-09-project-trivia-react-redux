@@ -25,7 +25,16 @@ class Login extends React.Component {
     const { user, email } = this.state;
     const { propHandleUser, propHandleEmail, propFetchQuestions } = this.props;
     const token = await getToken();
+    const state = {
+      player: {
+        name: user,
+        assertions: 0,
+        score: 0,
+        gravatarEmail: md5(email).toString(),
+      },
+    };
     localStorage.setItem('token', token.token);
+    localStorage.setItem('state', JSON.stringify(state));
     const localToken = localStorage.getItem('token');
     const numQuestion = 5;
     propHandleUser(user);

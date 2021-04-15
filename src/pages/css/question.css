@@ -1,3 +1,17 @@
+.carregando {
+  color: white;
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0.6);
+  margin: 10px;
+  width: 100%;
+}
+
+/* button:focus {
+  border: none;
+} */
+
 .boll-answer {
   align-items: center;
   display: flex;
@@ -10,15 +24,30 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-bottom: 20px;
   width: 100%;
 }
 
 .bool-question {
   background-color: rgba(255, 255, 255, 0.6);
-  border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 15px;
+  margin-bottom: 10px;
+  margin-top: 30px;
   padding: 20px;
   width: 60%;
+}
+
+/* .btnCorrect .btnIncorrect {
+  outline: none;
+} */
+
+.btn-next {
+  visibility: hidden;
+  width: 50%;
+}
+
+h1 {
+  color: white;
 }
 
 .header {
@@ -42,6 +71,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-bottom: 20px;
   width: 40%;
 }
 
@@ -49,14 +79,15 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 30px;
   width: 100%;
 }
 
 .mult-question {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.6);
-  border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 15px;
+  margin-bottom: 10px;
   padding: 20px;
   width: 40%;
 }
