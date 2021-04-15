@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+
+.feedContainer {
+  background-image: url('./hehefeed.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 12vh 10vh 58vh 20vh;
+}
+
+.feedHeader img{
+  height: 11vh;
+}
+
+.feedHeader {
+  grid-row: 1;
+  grid-column-end: 4;
+  grid-column-start: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  background-color: #80808018;
+  box-shadow: black 2px 2px 10px 5px, black -2px -2px 10px 5px;
+  justify-items: center;
+  height: 12vh;
+}
+
+.feedCard {
+  grid-column: 2;
+  grid-row: 3;
+  background-color: #e0e0e033;
+  backdrop-filter: blur(4px) hue-rotate(45deg);
+  box-shadow: black 2px 2px 10px 5px, black -2px -2px 10px 5px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 3fr 1fr;
+  grid-template-columns: 1fr 5fr 1fr;
+  align-items: self-end;
+  border-radius: 20px;
+}
+
+.msg {
+  grid-column: 2;
+  grid-row: 3;
+  font-family: 'Permanent Marker', cursive;
+  align-self: center;
+  font-size: 3vh;
+  text-align: center;
+}
+
+.score {
+  text-align: center;
+  grid-column: 2;
+  grid-row: 1;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3vh;
+}
+
+.feedBtns {
+  grid-column: 2;
+  grid-row: 3;
+  grid-row: 4;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnReset, .btnRanking {
+  width: 20vh;
+  height: fit-content;
+  min-height: 9vh;
+  margin-bottom: 2vh;
+  font-size: 3vh;
+  box-sizing: border-box;
+}
+
+.rainbowContainer {
+  grid-column: 2;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: 10px;
+  grid-template-rows: 0px;
+  align-self: center;
+  top: 2vh;
+  position: absolute;
+  left: 22vh;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(15px 30px 4px black);
+}
+
+.rainbowOne {
+  grid-column: 1;
+  grid-row: 1;
+  width: 110px;
+  animation: rOne 1s linear infinite;
+  border-radius: 50%;
+}
+
+.rainbowTwo {
+  grid-column: 1;
+  grid-row: 1;
+  width: 120px;
+  border-radius: 50%;
+  animation: rTwo 0.9s linear infinite;
+}
+
+.rainbowThree {
+  grid-column: 1;
+  grid-row: 1;
+  width: 130px;
+  border-radius: 50%;
+  animation: rThree 0.8s linear infinite;
+}
+
+.rainbowFour {
+  grid-column: 1;
+  grid-row: 1;
+  width: 140px;
+  border-radius: 50%;
+  animation: rFour 0.7s linear infinite;
+}
+
+.rainbowFive {
+  grid-column: 1;
+  grid-row: 1;
+  width: 150px;
+  border-radius: 50%;
+  animation: rFive 0.6s linear infinite;
+}
+
+.rainbowSix {
+  grid-column: 1;
+  grid-row: 1;
+  width: 150px;
+  border-radius: 50%;
+  animation: rSix 1s linear infinite;
+}
+
+.rainbowSeven {
+  grid-column: 1;
+  grid-row: 1;
+  width: 140px;
+  border-radius: 50%;
+  animation: rSeven 0.9s linear infinite;
+}
+
+.rainbowEight {
+  grid-column: 1;
+  grid-row: 1;
+  width: 130px;
+  border-radius: 50%;
+  animation: rEight 0.8s linear infinite;
+}
+
+.rainbowNine {
+  grid-column: 1;
+  grid-row: 1;
+  width: 120px;
+  border-radius: 50%;
+  animation: rNine 0.7s linear infinite;
+}
+
+.rainbowTen{
+  grid-column: 1;
+  grid-row: 1;
+  width: 150px;
+  border-radius: 50%;
+  animation: rTen 0.6s linear infinite;
+}
+
+@keyframes rOne {
+  from { height: 1vh; width: 1vh;}
+  to{ height: 2vh;
+    width: 2vh;
+    transform: translate(-60px, -20px) ;
+    border-radius: 50%;
+    background: red ;
+  }
+}
+
+@keyframes rTwo {
+  from { height: 1vh; width: 1vh; }
+  to{ height: 2vh;
+    width: 2vh;
+    transform: translate(-60px, -20px) ;
+    border-radius: 50%;
+    background: yellow;
+  }
+}
+
+@keyframes rThree {
+  from { height: 1vh; width: 1vh}
+  to{ height: 2vh;
+    width: 2vh;
+    transform: translate(60px, -20px) ;
+    border-radius: 50%;
+    background: green;
+  }
+}
+
+@keyframes rFour {
+  from { height: 1vh; width: 1vh}
+  to{ height: 2vh;
+    width: 2vh;
+    transform: translate(-60px, -50px) ;
+    border-radius: 50%;
+    background: blue;
+  }
+}
+
+@keyframes rFive {
+  from { height: 1vh; width: 1vh}
+  to{ height: 2vh;
+    width: 2vh;
+    transform: translate(80px, -20px) ;
+    border-radius: 50%;
+    background: pink;
+  }
+}
+
+@keyframes rSix {
+  from { height: 1vh; width: 1vh}
+  to{ height: 2vh;
+    width: 2vh;
+    transform: translate(80px, -30px) ;
+    border-radius: 50%;
+    background: red ;
+  }
+}
+
+@keyframes rSeven {
+  from { height: 1vh; width: 1vh}
+  to{ height: 2vh;
+    width: 2vh;
+    transform: translate(80px, -50px) ;
+    border-radius: 50%;
+    background: yellow;
+  }
+}
+
+@keyframes rEight {
+  from { height: 1vh; width: 1vh}
+  to{ height: 2vh;
+    width: 2vh;
+    transform: translate(-50px, -60px) ;
+    border-radius: 50%;
+    background: rgb(30, 255, 0);
+  }
+}
+
+@keyframes rNine {
+  from { height: 1vh; width: 1vh}
+  to{ height: 2vh;
+    width: 2vh;
+    transform: translate(60px, -80px) ;
+    border-radius: 50%;
+    background: rgb(0, 4, 255);
+  }
+}
+
+@keyframes rTen {
+  from { height: 1vh; width: 1vh}
+  to{ height: 2vh;
+    width: 2vh;
+    transform: translate(-60px, -20px) ;
+    border-radius: 50%;
+    background: rgb(255, 0, 221);
+  }
+}

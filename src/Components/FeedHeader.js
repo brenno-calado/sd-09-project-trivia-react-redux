@@ -28,7 +28,7 @@ class FeedHeader extends Component {
     const { name, score } = this.props;
     const { hash } = this.state;
     return (
-      <div>
+      <div className="feedHeader">
         <img
           alt="profile-img"
           data-testid="header-profile-picture"

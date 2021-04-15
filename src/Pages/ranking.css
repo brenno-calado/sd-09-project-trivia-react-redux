@@ -1,0 +1,63 @@
+.rankingBg {
+  background-image: url('./hehefeed.jpg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 10vh 80vh 10vh;
+}
+.rankingContainer {
+  grid-row: 2;
+}
+
+.rankingBg a{
+  grid-row: 1;
+  align-self: center;
+}
+
+.rankingCards {
+  display: inline-grid;
+  background-color: #80808033;
+  backdrop-filter: blur(4px) hue-rotate(45deg);
+  box-shadow: black 2px 2px 10px 5px, black -2px -2px 10px 5px;
+  width: 40vh;
+  height: 20vh;
+  margin-bottom: 2vh;
+  align-self: center;
+  margin-left: 5vh;
+}
+
+.rankingImg {
+  height: 5vh;
+}
+
+.rankingName {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 3vh;
+  color: #ffdead9e;
+  font-weight: 700;
+  text-shadow: black 2px 1px 5px;
+  text-align: center;
+  align-self: center;
+}
+
+.rankingScore {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 2vh;
+  color: #ffdead9e;
+  font-weight: 700;
+  text-shadow: black 2px 1px 5px;
+  text-align: center;
+  align-self: baseline;
+}
+
+.rankingHeader {
+  margin-top: 0;
+  align-self: center;
+  justify-self: center;
+  grid-row: 1;
+}

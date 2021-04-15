@@ -13,7 +13,8 @@ import {
   playerScore,
   updateIndex,
   setZeroState } from '../redux/actions';
-import './answers.css';
+import './feedback.css';
+import Gz from '../Components/gz';
 
 class Feedback extends Component {
   constructor() {
@@ -52,10 +53,10 @@ class Feedback extends Component {
     return (
       <div>
         <p data-testid="feedback-total-score">
-          { score }
+          { `Bowa! Seu score atual é: ${score}` }
         </p>
         <p data-testid="feedback-total-question">
-          { correctAnswers }
+          { `Acertou um total de: ${correctAnswers}` }
         </p>
       </div>
     );
@@ -65,31 +66,41 @@ class Feedback extends Component {
     const { correctAnswers } = this.props;
     const tres = 3;
     if (correctAnswers >= tres) {
-      return <p data-testid="feedback-text">Mandou bem!</p>;
+      return (
+        <p data-testid="feedback-text">
+          Mandou bem! Mas será que está em primeiro no ranking?
+        </p>
+      );
     }
     return <p data-testid="feedback-text">Podia ser melhor...</p>;
   }
 
   render() {
     return (
-      <div>
+      <div className="feedContainer">
         <FeedHeader />
-        { this.message() }
-        { this.score() }
-        <Link to="/">
-          <button
-            type="button"
-            data-testid="btn-play-again"
-            onClick={ this.setGlobalState }
-          >
-            Jogar novamente
-          </button>
-        </Link>
-        <Link to="/ranking">
-          <button type="button" data-testid="btn-ranking">
-            Ver Ranking
-          </button>
-        </Link>
+        <div className="feedCard">
+          <div className="score">{ this.message() }</div>
+          <Gz />
+          <div className="msg">{ this.score() }</div>
+          <div className="feedBtns">
+            <Link to="/">
+              <button
+                className="btnReset"
+                type="button"
+                data-testid="btn-play-again"
+                onClick={ this.setGlobalState }
+              >
+                Jogar novamente
+              </button>
+            </Link>
+            <Link to="/ranking">
+              <button className="btnRanking" type="button" data-testid="btn-ranking">
+                Ver Ranking
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }

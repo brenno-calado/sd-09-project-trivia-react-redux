@@ -7,6 +7,7 @@ import { playerLogin, requestApiToken, requestApiQuestions } from '../redux/acti
 import SelectSettings from '../Components/SelectSettings';
 import Cube from './cube';
 import './login.css';
+// import Gz from '../Components/gz';
 
 class Login extends Component {
   constructor(props) {
@@ -108,6 +109,7 @@ class Login extends Component {
             </div>
             <div className="buttonContainer">
               { this.createBtnPlay() }
+              {/* <Gz /> */}
               <SelectSettings />
             </div>
           </div>

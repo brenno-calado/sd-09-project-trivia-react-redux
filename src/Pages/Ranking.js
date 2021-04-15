@@ -11,6 +11,7 @@ import {
   playerScore,
   updateIndex,
   setZeroState } from '../redux/actions';
+import './ranking.css';
 
 class Ranking extends Component {
   constructor() {
@@ -34,28 +35,30 @@ class Ranking extends Component {
   render() {
     const players = JSON.parse(localStorage.getItem('ranking')) || [];
     return (
-      <div>
-        <h1 data-testid="ranking-title">Ranking</h1>
-        { players.sort((player1, player2) => {
-          const um = 1;
-          const menosUm = -1;
-          const zero = 0;
-          if (player1.score > player2.score) {
-            return menosUm;
-          }
-          if (player1.score < player2.score) {
-            return um;
-          }
-          return zero;
-        }).map((player, index) => (
-          <div key={ player.name }>
-            <img src={ player.picture } alt="player" />
-            <p data-testid={ `player-name-${index}` }>{ player.name }</p>
-            <p data-testid={ `player-score-${index}` }>{ player.score }</p>
-          </div>
-        ))}
+      <div className="rankingBg">
+        <h1 className="rankingHeader" data-testid="ranking-title">Ranking</h1>
+        <div className="rankingContainer">
+          { players.sort((player1, player2) => {
+            const um = 1;
+            const menosUm = -1;
+            const zero = 0;
+            if (player1.score > player2.score) {
+              return menosUm;
+            }
+            if (player1.score < player2.score) {
+              return um;
+            }
+            return zero;
+          }).map((player, index) => (
+            <div className={ `rankingCards ${index}` } key={ player.name }>
+              <img className="rankingImg" src={ player.picture } alt="player" />
+              <p className="rankingName" data-testid={ `player-name-${index}` }>{ `Nome: ${player.name}` }</p>
+              <p className="rankingScore" data-testid={ `player-score-${index}` }>{ `Score: ${player.score}` }</p>
+            </div>
+          ))}
+        </div>
         <Link to="/">
-          <button type="button" data-testid="btn-go-home" onClick={ this.setGlobalState }>
+          <button className="goBack" type="button" data-testid="btn-go-home" onClick={ this.setGlobalState }>
             BACK TO HOME
           </button>
         </Link>
