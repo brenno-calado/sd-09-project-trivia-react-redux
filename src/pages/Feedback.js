@@ -57,12 +57,24 @@ class Feedback extends React.Component {
     );
   }
 
+  renderButtonRanking() {
+    return (
+      <Link to="/ranking">
+        <button type="button" data-testid="btn-ranking">
+          Ver ranking
+        </button>
+      </Link>
+    );
+  }
+
   render() {
     return (
       <main>
         <Header />
         {this.renderResultsInfo()}
         {this.renderButtonReplay()}
+        {this.renderButtonRanking()}
+
       </main>
     );
   }
