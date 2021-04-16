@@ -9,6 +9,7 @@ class Feedback extends React.Component {
     super(props);
     this.createHeader = this.createHeader.bind(this);
     this.FeedbackMessage = this.FeedbackMessage.bind(this);
+    this.checkRanking = this.checkRanking.bind(this);
     this.gameResume = this.gameResume.bind(this);
   }
 
@@ -38,9 +39,35 @@ class Feedback extends React.Component {
     } return <p data-testid="feedback-text">Mandou bem!</p>;
   }
 
+  checkRanking(state) {
+    const { name, score, gravatarEmail: email } = state.player;
+    const playerCurrentScore = {
+      name,
+      score,
+      picture: `https://www.gravatar.com/avatar/${email}` };
+    let ranking = JSON.parse(localStorage.getItem('ranking'));
+    if (ranking) {
+      const checkPlayer = ranking
+        .filter((player) => player.name === playerCurrentScore.name);
+      if (checkPlayer.length === 0) {
+        ranking.push(playerCurrentScore);
+        localStorage.setItem('ranking', JSON.stringify(ranking));
+        return;
+      }
+      if (checkPlayer[0].score < score) {
+        ranking[ranking.indexOf(checkPlayer[0])] = playerCurrentScore;
+        localStorage.setItem('ranking', JSON.stringify(ranking));
+      }
+    } else {
+      ranking = [playerCurrentScore];
+      localStorage.setItem('ranking', JSON.stringify(ranking));
+    }
+  }
+
   gameResume() {
     const { assertions } = this.props;
     const state = JSON.parse(localStorage.getItem('state'));
+    this.checkRanking(state);
     return (
       <div className="total-score">
         <h5>
@@ -66,6 +93,9 @@ class Feedback extends React.Component {
         { this.gameResume() }
         <Link to="/">
           <button data-testid="btn-play-again" type="button">Jogar novamente</button>
+        </Link>
+        <Link to="/ranking">
+          <button data-testid="btn-ranking" type="button">Ver ranking</button>
         </Link>
       </div>
     );
