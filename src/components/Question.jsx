@@ -11,7 +11,6 @@ export default class Question extends Component {
     };
     this.renderAnswers = this.renderAnswers.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.showNextQuestionButton = this.showNextQuestionButton.bind(this);
   }
 
   componentDidMount() {
@@ -31,14 +30,6 @@ export default class Question extends Component {
 
   handleClick() {
     this.setState({ clicked: true });
-  }
-
-  showNextQuestionButton() {
-    return (
-      <button type="button" data-testid="btn-next">
-        Próxima
-      </button>
-    );
   }
 
   shuffleAnswers(array) {
@@ -88,7 +79,7 @@ export default class Question extends Component {
 
   render() {
     const { data: { category, question } } = this.props;
-    const { clicked, timer } = this.state;
+    const { timer } = this.state;
     return (
       <>
         <section className="question-game">
@@ -96,7 +87,6 @@ export default class Question extends Component {
           <p data-testid="question-text">{ question }</p>
           { this.renderAnswers() }
         </section>
-        { clicked && this.showNextQuestionButton() }
         <div>
           {timer > 0 ? <p>{ timer }</p> : <p>0</p>}
         </div>

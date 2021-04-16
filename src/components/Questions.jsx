@@ -5,8 +5,25 @@ import Logotipo from './Logotipo';
 import Question from './Question';
 
 class Questions extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false,
+    };
+    this.showNextQuestionButton = this.showNextQuestionButton.bind(this);
+  }
+
+  showNextQuestionButton() {
+    return (
+      <button type="button" data-testid="btn-next">
+        Próxima
+      </button>
+    );
+  }
+
   render() {
     const { questions } = this.props;
+    const { clicked } = this.state;
 
     return (
       <div>
@@ -16,17 +33,11 @@ class Questions extends Component {
             : (
               <main className="container-game">
                 {
-                  /*
-                    Fiz assim pra poder aparecer só uma questão
-                    A pessoa que foi fazer o botão de próxima deve implementar
-                    a lógica de passar entre as questões igual na pokedex
-                    Assim podemos focar no que os requisitos estão de fato pedindo ^^
-                    Ass: Raquel
-                  */
                   [questions[0]].map((question, index) => (
                     <Question data={ question } key={ index } />
                   ))
                 }
+                { clicked && this.showNextQuestionButton() }
               </main>
             )
         }
