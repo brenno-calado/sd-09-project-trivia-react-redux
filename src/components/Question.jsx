@@ -31,8 +31,33 @@ class Question extends Component {
     this.interval = setInterval(() => this.tick(), milliseconds);
   }
 
+  componentDidUpdate(prevProps) {
+    const { data: currData } = this.props;
+    const { data: prevData } = prevProps;
+    if (currData !== prevData) {
+      const milliseconds = 1000;
+      this.interval = setInterval(() => this.tick(), milliseconds);
+      this.updateAnswers();
+    }
+  }
+
   componentWillUnmount() {
     clearInterval(this.interval);
+  }
+
+  updateAnswers() {
+    const {
+      data: {
+        incorrect_answers: incorrectAnswers,
+        correct_answer: correctAnswer,
+      },
+    } = this.props;
+    this.setState({
+      clicked: false,
+      answers: [...incorrectAnswers, correctAnswer],
+      shuffledAnswers: this.shuffleAnswers([...incorrectAnswers, correctAnswer]),
+      timer: 30,
+    });
   }
 
   handleClick(e) {

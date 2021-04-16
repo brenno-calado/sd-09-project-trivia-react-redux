@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf } from 'prop-types';
+import { Link } from 'react-router-dom';
 import Logotipo from './Logotipo';
 import Question from './Question';
 
@@ -24,16 +25,28 @@ class Questions extends Component {
     const { questionIndex } = this.state;
     const { questions } = this.props;
     if (questionIndex < questions.length - 1) {
-      this.setState((prevState) => ({ questionIndex: prevState.questionIndex + 1 }));
+      this.setState((prevState) => (
+        { questionIndex: prevState.questionIndex + 1, clicked: false }
+      ));
     }
   }
 
   showNextQuestionButton() {
-    return (
-      <button type="button" data-testid="btn-next" onClick={ this.showNextQuestion }>
-        Próxima
-      </button>
-    );
+    const { questionIndex } = this.state;
+    const { questions } = this.props;
+    return questionIndex === questions.length - 1
+      ? (
+        <Link to="/feedback">
+          <button type="button" data-testid="btn-next" onClick={ this.showNextQuestion }>
+            Próxima
+          </button>
+        </Link>
+      )
+      : (
+        <button type="button" data-testid="btn-next" onClick={ this.showNextQuestion }>
+          Próxima
+        </button>
+      );
   }
 
   render() {
