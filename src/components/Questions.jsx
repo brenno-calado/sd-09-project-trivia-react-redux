@@ -9,13 +9,28 @@ class Questions extends Component {
     super(props);
     this.state = {
       clicked: false,
+      questionIndex: 0,
     };
     this.showNextQuestionButton = this.showNextQuestionButton.bind(this);
+    this.handleAnsweredQuestion = this.handleAnsweredQuestion.bind(this);
+    this.showNextQuestion = this.showNextQuestion.bind(this);
+  }
+
+  handleAnsweredQuestion() {
+    this.setState({ clicked: true });
+  }
+
+  showNextQuestion() {
+    const { questionIndex } = this.state;
+    const { questions } = this.props;
+    if (questionIndex < questions.length - 1) {
+      this.setState((prevState) => ({ questionIndex: prevState.questionIndex + 1 }));
+    }
   }
 
   showNextQuestionButton() {
     return (
-      <button type="button" data-testid="btn-next">
+      <button type="button" data-testid="btn-next" onClick={ this.showNextQuestion }>
         Próxima
       </button>
     );
@@ -23,7 +38,7 @@ class Questions extends Component {
 
   render() {
     const { questions } = this.props;
-    const { clicked } = this.state;
+    const { clicked, questionIndex } = this.state;
 
     return (
       <div>
@@ -33,8 +48,12 @@ class Questions extends Component {
             : (
               <main className="container-game">
                 {
-                  [questions[0]].map((question, index) => (
-                    <Question data={ question } key={ index } />
+                  [questions[questionIndex]].map((question, index) => (
+                    <Question
+                      data={ question }
+                      key={ index }
+                      onAnsweredQuestion={ this.handleAnsweredQuestion }
+                    />
                   ))
                 }
                 { clicked && this.showNextQuestionButton() }
