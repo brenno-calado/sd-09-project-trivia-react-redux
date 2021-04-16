@@ -1,4 +1,4 @@
-import { NEW_PLAYER } from '../actions';
+import { NEW_PLAYER, ANSWERED_CORRECTLY } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -14,6 +14,12 @@ const player = (state = INITIAL_STATE, action) => {
       ...state,
       name: action.name,
       email: action.email,
+    };
+  case ANSWERED_CORRECTLY:
+    return {
+      ...state,
+      assertions: action.assertions,
+      score: action.score,
     };
   default:
     return state;

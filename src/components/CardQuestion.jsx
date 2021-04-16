@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { scoreUpdateAction } from '../actions';
+import { updateScore } from '../actions';
 import './CardQuestion.css';
 
 class CardQuestion extends React.Component {
   constructor(state) {
     super(state);
+
     this.state = {
+      qCounter: 0,
       isSelected: false,
       time: {},
       seconds: 30,
-      assertions: 0,
-      score: 0,
     };
+
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
     this.countDown = this.countDown.bind(this);
@@ -22,6 +24,8 @@ class CardQuestion extends React.Component {
     this.recordScore = this.recordScore.bind(this);
     this.setLocalStorage = this.setLocalStorage.bind(this);
     this.getLocalStorage = this.getLocalStorage.bind(this);
+    this.questionCounter = this.questionCounter.bind(this);
+    this.nextBtn = this.nextBtn.bind(this);
   }
 
   componentDidMount() {
@@ -30,28 +34,20 @@ class CardQuestion extends React.Component {
   }
 
   setLocalStorage() {
-    const { name, email } = this.props;
-    const state = {
-      player: {
-        name,
-        assertions: 0,
-        score: 0,
-        email,
-      },
-    };
-    return localStorage.setItem('state', JSON.stringify(state));
+    const { player } = this.props;
+    localStorage.setItem('state', JSON.stringify({ player }));
   }
 
   getLocalStorage() {
     const valid = localStorage.getItem('state');
-    if (valid !== null) {
-      return JSON.parse(valid);
-    }
+    if (valid !== null) return JSON.parse(valid);
   }
 
   selectAnswer(event) {
     const { seconds } = this.state;
     this.setState({ isSelected: true });
+    const button = document.getElementsByClassName('next-btn');
+    button[0].style.display = 'inline';
     this.recordScore(event.target.innerText, seconds);
   }
 
@@ -76,22 +72,19 @@ class CardQuestion extends React.Component {
   }
 
   recordScore(answer, sec) {
-    const { getQuestions: { questions: { results } } } = this.props;
-    const { dispatchScore } = this.props;
-    const { assertions, score } = this.state;
-    //  Trocar essa const index pelo contador que a Mayara fez
-    const index = 0;
-    const currentQuestion = results[index];
-    const state = this.getLocalStorage();
+    const {
+      getQuestions: { questions: { results } },
+      dispatchUpdatedAssertions,
+    } = this.props;
+    const { qCounter } = this.state;
+    const currentQuestion = results[qCounter];
+    const { player } = this.getLocalStorage();
+
     if (answer === currentQuestion.correct_answer) {
-      state.player.assertions += 1;
-      state.player.score += this.calculateScore(sec, currentQuestion.difficulty);
-      this.setState({
-        assertions: state.player.assertions,
-        score: state.player.score,
-      });
-      dispatchScore(score, assertions);
-      return localStorage.setItem('state', JSON.stringify(state));
+      player.assertions += 1;
+      player.score += this.calculateScore(sec, currentQuestion.difficulty);
+      localStorage.setItem('state', JSON.stringify({ player }));
+      dispatchUpdatedAssertions(player.assertions, player.score);
     }
   }
 
@@ -124,14 +117,44 @@ class CardQuestion extends React.Component {
     }
   }
 
+  questionCounter() {
+    this.setState((state) => ({
+      qCounter: state.qCounter + 1,
+      isSelected: false,
+      seconds: 30,
+    }));
+  }
+
+  nextBtn() {
+    const { qCounter } = this.state;
+    const four = 4;
+    if (qCounter === four) {
+      return (
+        <Link to="/feedback">
+          <button
+            type="button"
+            className="next-btn"
+            data-testid="btn-next"
+          >
+            Próxima
+          </button>
+        </Link>);
+    }
+    return (
+      <button
+        type="button"
+        className="next-btn"
+        data-testid="btn-next"
+        onClick={ this.questionCounter }
+      >
+        Próxima
+      </button>);
+  }
+
   render() {
     const { getQuestions: { questions: { results } } } = this.props;
-    const { isSelected, time } = this.state;
-    // Constantes criadas para avaliacao do requisito 6. Deleta-las posteriormente.
-    const index = 0;
-    const currentQuestion = results[index];
-    // return results.map((currentQuestion, index) => (
-    return ( // Return de apenas 1 pergunta para avaliacao do requisito 6. Deletar este return quando houver o botao de proxima pergunta.
+    const { isSelected, time, qCounter } = this.state;
+    const questions = results.map((currentQuestion, index) => (
       <div key={ index }>
         <div>
           {time.s}
@@ -159,11 +182,14 @@ class CardQuestion extends React.Component {
             {incorrectAnswer}
           </button>
         ))}
+        {this.nextBtn()}
       </div>
-    ); // Deletar essa linha quando usar o map da linha 12.
-    // ));
+    ));
+    // Retornar uma questão por vez.
+    return questions[qCounter];
   }
 }
+
 CardQuestion.propTypes = {
   getQuestions: PropTypes.shape({
     loading: PropTypes.bool,
@@ -172,10 +198,15 @@ CardQuestion.propTypes = {
       results: PropTypes.arrayOf(Object),
     }),
   }),
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  dispatchScore: PropTypes.func,
+  player: PropTypes.shape({
+    name: PropTypes.string,
+    assertions: PropTypes.number,
+    score: PropTypes.number,
+    email: PropTypes.string,
+  }),
+  dispatchUpdatedAssertions: PropTypes.func,
 };
+
 CardQuestion.defaultProps = {
   getQuestions: PropTypes.shape({
     loading: PropTypes.bool,
@@ -184,14 +215,24 @@ CardQuestion.defaultProps = {
       results: PropTypes.arrayOf(Object),
     }),
   }),
-  dispatchScore: PropTypes.func,
+  player: PropTypes.shape({
+    name: PropTypes.string,
+    assertions: PropTypes.number,
+    score: PropTypes.number,
+    email: PropTypes.string,
+  }),
+  dispatchUpdatedAssertions: PropTypes.func,
 };
+
 const mapStateToProps = (state) => ({
   getQuestions: state.questions,
-  name: state.player.name,
-  email: state.player.email,
+  player: state.player,
 });
+
 const mapDispatchToProps = (dispatch) => ({
-  dispatchScore: (score, assertions) => dispatch(scoreUpdateAction(score, assertions)),
+  dispatchUpdatedAssertions: (assertions, score) => (
+    dispatch(updateScore(assertions, score))
+  ),
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(CardQuestion);

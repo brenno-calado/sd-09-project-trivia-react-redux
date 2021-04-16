@@ -5,3 +5,7 @@
 .wrongAnswer {
   border: 3px solid red;
 }
+
+.next-btn {
+  display: none;
+}

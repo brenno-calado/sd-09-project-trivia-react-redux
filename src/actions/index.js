@@ -9,6 +9,7 @@ export const NEW_GAME = 'NEW_GAME';
 export const SCORE_UPDATE = 'SCORE_UPDATE';
 export const GAME_QUESTIONS = 'GAME_QUESTIONS';
 export const LOADING_QUESTIONS = 'LOADING_QUESTIONS';
+export const ANSWERED_CORRECTLY = 'ANSWERED_CORRECTLY';
 
 export const newPlayerInfo = (name, email, score, assertions) => ({
   type: NEW_PLAYER,
@@ -55,3 +56,9 @@ export function fetchGameQuestions(token) {
     return dispatch(receiveQuestions(gameQuestions));
   };
 }
+
+export const updateScore = (assertions, score) => ({
+  type: ANSWERED_CORRECTLY,
+  assertions,
+  score,
+});
