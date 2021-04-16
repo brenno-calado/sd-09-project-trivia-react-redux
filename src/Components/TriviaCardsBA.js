@@ -34,7 +34,7 @@ class BooleanAnswers extends Component {
     this.endTime();
   }
 
-  // href = Vallin
+  // href = Thiago Vallin / Rafa Reis
   decodeHtml(html) {
     const txt = document.createElement('textarea');
     txt.innerHTML = html;

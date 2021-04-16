@@ -77,13 +77,14 @@
   display: block;
   font-size: 12vh;
   height: 100%;
-  text-decoration: none;
   text-align: center;
+  text-decoration: none;
   width: 100%;
 }
 
 .shape .ft {
-  background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png'); background-repeat: no-repeat;
+  background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png');
+  background-repeat: no-repeat;
   background-position: center;
   transform: translateZ(9vh);
 }
@@ -93,7 +94,8 @@
 }
 
 .shape .bk {
-  background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png'); background-repeat: no-repeat;
+  background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png');
+  background-repeat: no-repeat;
   background-position: center;
   transform: rotateY(180deg) translateZ(9vh);
 }
@@ -103,7 +105,8 @@
 }
 
 .shape .tp {
-  background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png'); background-repeat: no-repeat;
+  background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png');
+  background-repeat: no-repeat;
   background-position: center;
   transform: rotateX(90deg) translateZ(9vh);
 }
@@ -138,12 +141,15 @@
 }
 
 @keyframes spin {
+
   0% {
     transform: rotateX(-360deg) rotateY(-360deg);
   }
+
   50% {
     transform: rotateX(0deg) rotateY(0deg);
   }
+
   100% {
     transform: rotateX(360deg) rotateY(360deg);
   }
@@ -151,17 +157,16 @@
 
 
 .inputLogin {
-  border: 0;
-  color: navajowhite;
-  padding: 5px 0 7px;
+  background-color: transparent;
   border: 1px solid transparent;
   border-bottom-color: darkgreen;
-  transition: 0.4s;
-  background-color: transparent;
   box-sizing: border-box;
-  width: 40vh;
-  text-align: center;
+  color: navajowhite;
   font-size: 2vh;
+  padding: 5px 0 7px;
+  text-align: center;
+  transition: 0.4s;
+  width: 40vh;
 }
 
 .inputLogin:hover {
@@ -214,21 +219,25 @@ svg.play {
 }
 
 @keyframes start {
+
   from {
     transform: translateX(-3px);
   }
+
   to {
     transform: translateX(3px);
   }
 }
 
 @keyframes rotate {
+
   to {
     transform: rotate(360deg);
   }
 }
 
 @keyframes Pulse {
+
   to {
     box-shadow: white -1px 0px 4px 3px, rgb(13 223 31) 0px 0px 5px 7px;
   }
@@ -236,18 +245,23 @@ svg.play {
 
 
 @keyframes Animate {
+
   0% {
     border-bottom: darkgreen 3px solid;
   }
+
   25% {
     border-bottom: lightgreen 3px solid;
   }
+
   50% {
     border-bottom: greenyellow 3px solid;
   }
+
   75% {
     border-bottom: lightgreen 3px solid;
   }
+
   100% {
     border-bottom: darkgreen 3px solid;
   }

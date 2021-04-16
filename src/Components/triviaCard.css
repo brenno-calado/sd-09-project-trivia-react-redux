@@ -58,14 +58,16 @@
 button {
   background-color: rgb(0 0 255 / 17%);
   border: none;
-  box-shadow: inset #0000008f 1px 1px 0 1px, inset #0000008f -1px -1px 0 1px;
+  box-shadow: inset #0000008f 1px 1px 0 1px , inset #0000008f -1px -1px 0 1px;
   cursor: pointer;
 }
 
 @keyframes start {
+
   from {
     transform: translateX(-3px);
   }
+
   to {
     transform: translateX(3px);
   }
@@ -95,9 +97,11 @@ button {
 }
 
 @keyframes grow {
+
   0% {
     font-size: 10vh;
   }
+
   100% {
     font-size: 11vh;
   }

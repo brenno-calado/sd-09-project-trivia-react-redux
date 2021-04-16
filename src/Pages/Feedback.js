@@ -53,10 +53,10 @@ class Feedback extends Component {
     return (
       <div>
         <p data-testid="feedback-total-score">
-          { `Bowa! Seu score atual é: ${score}` }
+          {score}
         </p>
         <p data-testid="feedback-total-question">
-          { `Acertou um total de: ${correctAnswers}` }
+          {correctAnswers}
         </p>
       </div>
     );
