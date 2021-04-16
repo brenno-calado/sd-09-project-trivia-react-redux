@@ -12,6 +12,7 @@ class Login extends React.Component {
     this.state = {
       name: '',
       email: '',
+      score: 0,
     };
     this.getValue = this.getValue.bind(this);
     this.proceedToGame = this.proceedToGame.bind(this);
