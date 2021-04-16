@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
-
 .feedContainer {
   background-image: url('./hehefeed.jpg');
   background-position: center;
@@ -18,7 +17,7 @@
 
 .feedHeader {
   background-color: #80808018;
-  box-shadow: black 2px 2px 10px 5px, black -2px -2px 10px 5px;
+  box-shadow: black 2px 2px 10px 5px , black -2px -2px 10px 5px;
   display: grid;
   grid-row: 1;
   grid-template-columns: 1fr 1fr 1fr;
@@ -34,7 +33,7 @@
   backdrop-filter: blur(4px) hue-rotate(45deg);
   background-color: #e0e0e033;
   border-radius: 20px;
-  box-shadow: black 2px 2px 10px 5px, black -2px -2px 10px 5px;
+  box-shadow: black 2px 2px 10px 5px , black -2px -2px 10px 5px;
   display: grid;
   grid-column: 2;
   grid-row: 3;
@@ -44,7 +43,7 @@
 
 .msg {
   align-self: center;
-  font-family: 'Permanent Marker', cursive;
+  font-family: Permanent Marker, cursive;
   font-size: 3vh;
   grid-column: 2;
   grid-row: 3;
@@ -52,7 +51,7 @@
 }
 
 .score {
-  font-family: 'Permanent Marker', cursive;
+  font-family: Permanent Marker, cursive;
   font-size: 3vh;
   grid-column: 2;
   grid-row: 1;
@@ -162,7 +161,7 @@
   width: 120px;
 }
 
-.rainbowTen{
+.rainbowTen {
   animation: rTen 0.6s linear infinite;
   border-radius: 50%;
   grid-column: 1;
@@ -171,7 +170,10 @@
 }
 
 @keyframes rOne {
-  from { height: 1vh; width: 1vh;}
+  from {
+    height: 1vh;
+    width: 1vh;
+  }
   to{
     background: red;
     border-radius: 50%;
@@ -182,7 +184,10 @@
 }
 
 @keyframes rTwo {
-  from { height: 1vh; width: 1vh; }
+  from {
+    height: 1vh;
+    width: 1vh;
+  }
   to{
     background: yellow;
     border-radius: 50%;
@@ -193,7 +198,10 @@
 }
 
 @keyframes rThree {
-  from { height: 1vh; width: 1vh}
+  from {
+    height: 1vh;
+    width: 1vh;
+  }
   to{
     background: green;
     border-radius: 50%;
@@ -204,7 +212,10 @@
 }
 
 @keyframes rFour {
-  from { height: 1vh; width: 1vh}
+  from {
+    height: 1vh;
+    width: 1vh;
+  }
   to{
     background: blue;
     border-radius: 50%;
@@ -215,7 +226,10 @@
 }
 
 @keyframes rFive {
-  from { height: 1vh; width: 1vh}
+  from {
+    height: 1vh;
+    width: 1vh;
+  }
   to{
     background: pink;
     border-radius: 50%;
@@ -226,7 +240,10 @@
 }
 
 @keyframes rSix {
-  from { height: 1vh; width: 1vh}
+  from {
+    height: 1vh;
+    width: 1vh;
+  }
   to{
     background: red;
     border-radius: 50%;
@@ -237,7 +254,10 @@
 }
 
 @keyframes rSeven {
-  from { height: 1vh; width: 1vh}
+  from {
+    height: 1vh;
+    width: 1vh;
+  }
   to{
     background: yellow;
     border-radius: 50%;
@@ -248,7 +268,10 @@
 }
 
 @keyframes rEight {
-  from { height: 1vh; width: 1vh}
+  from {
+    height: 1vh;
+    width: 1vh;
+  }
   to{
     background: rgb(30, 255, 0);
     border-radius: 50%;
@@ -259,7 +282,10 @@
 }
 
 @keyframes rNine {
-  from { height: 1vh; width: 1vh}
+  from {
+    height: 1vh;
+    width: 1vh;
+  }
   to{
     border-radius: 50%;
     background: rgb(0, 4, 255);
@@ -270,7 +296,10 @@
 }
 
 @keyframes rTen {
-  from { height: 1vh; width: 1vh}
+  from {
+    height: 1vh;
+    width: 1vh;
+  }
   to{
     background: rgb(255, 0, 221);
     border-radius: 50%;

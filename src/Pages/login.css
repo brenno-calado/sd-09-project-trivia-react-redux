@@ -98,7 +98,9 @@
   transform: rotateY(180deg) translateZ(9vh);
 }
 
-.shape .lt { transform: rotateY(270deg) translateZ(9vh); }
+.shape .lt {
+  transform: rotateY(270deg) translateZ(9vh);
+}
 
 .shape .tp {
   background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png'); background-repeat: no-repeat;
@@ -111,17 +113,40 @@
   transform: rotateX(270deg) rotateY(0deg) translateZ(9vh);
 }
 
-.shape.show-ft { transform: translateZ(9vh); }
-.shape.show-rt { transform: rotateX(360deg) rotateY(-90deg); }
-.shape.show-bk { transform: rotateY(180deg); }
-.shape.show-lt { transform: rotateY(90deg); }
-.shape.show-tp { transform: rotateX(-90deg) rotateY(-360deg); }
-.shape.show-bm { transform: rotateX(90deg) rotateY(360deg); }
+.shape.show-ft {
+  transform: translateZ(9vh);
+}
+
+.shape.show-rt {
+  transform: rotateX(360deg) rotateY(-90deg);
+}
+
+.shape.show-bk {
+  transform: rotateY(180deg);
+}
+
+.shape.show-lt {
+  transform: rotateY(90deg);
+}
+
+.shape.show-tp {
+  transform: rotateX(-90deg) rotateY(-360deg);
+}
+
+.shape.show-bm {
+  transform: rotateX(90deg) rotateY(360deg);
+}
 
 @keyframes spin {
-  0% { transform: rotateX(-360deg) rotateY(-360deg);}
-  50% { transform: rotateX(0deg) rotateY(0deg);}
-  100% { transform: rotateX(360deg) rotateY(360deg);}
+  0% {
+    transform: rotateX(-360deg) rotateY(-360deg);
+  }
+  50% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
 }
 
 
@@ -153,7 +178,7 @@
 .btnLogin {
   background: none;
   border: none;
-  box-shadow: white -1px 0px 4px 3px, rgb(13 223 31) 0px 0px 5px 5px;
+  box-shadow: white -1px 0px 4px 3px , rgb(13 223 31) 0px 0px 5px 5px;
   color: white;
   font-size: 2vh;
   height: 5vh;
@@ -189,24 +214,41 @@ svg.play {
 }
 
 @keyframes start {
-  from {transform: translateX(-3px);}
-  to {transform: translateX(3px);}
+  from {
+    transform: translateX(-3px);
+  }
+  to {
+    transform: translateX(3px);
+  }
 }
 
 @keyframes rotate {
-  to {transform: rotate(360deg);}
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes Pulse {
-  to{box-shadow: white -1px 0px 4px 3px, rgb(13 223 31) 0px 0px 5px 7px;}
+  to {
+    box-shadow: white -1px 0px 4px 3px, rgb(13 223 31) 0px 0px 5px 7px;
+  }
 }
 
 
 @keyframes Animate {
-  0% { border-bottom: darkgreen 3px solid;  }
-  25% { border-bottom: lightgreen 3px solid;  }
-  50% { border-bottom: greenyellow 3px solid;  }
-  75% { border-bottom: lightgreen 3px solid;  }
-  100% { border-bottom: darkgreen 3px solid;  }
+  0% {
+    border-bottom: darkgreen 3px solid;
+  }
+  25% {
+    border-bottom: lightgreen 3px solid;
+  }
+  50% {
+    border-bottom: greenyellow 3px solid;
+  }
+  75% {
+    border-bottom: lightgreen 3px solid;
+  }
+  100% {
+    border-bottom: darkgreen 3px solid;
+  }
 }
-

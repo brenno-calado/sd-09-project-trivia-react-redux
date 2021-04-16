@@ -17,10 +17,8 @@
 button {
   background-color: rgb(0 0 255 / 17%);
   border: none;
-  box-shadow: inset #0000008f 1px 1px 5px 2px, inset #0000008f -1px -1px 3px 2px;
+  box-shadow: inset #0000008f 1px 1px 5px 2px , inset #0000008f -1px -1px 3px 2px;
   color: #ffdead9e;
   cursor: pointer;
   margin: 2px;
 }
-
-
