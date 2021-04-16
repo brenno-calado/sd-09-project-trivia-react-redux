@@ -6,10 +6,10 @@ class FeedbackMsg extends React.Component {
   verifyNumberOfPoints() {
     const { pointCounter } = this.props;
     const three = 3;
-    if (pointCounter < three) {
-      return 'Podia ser melhor...';
+    if (pointCounter >= three) {
+      return 'Mandou bem!';
     }
-    return 'Mandou bem!';
+    return 'Podia ser melhor...';
   }
 
   render() {
