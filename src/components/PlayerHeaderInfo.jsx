@@ -4,25 +4,10 @@ import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
 
 class PlayerHeaderInfo extends React.Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.getLocalStorage = this.getLocalStorage.bind(this);
-  // }
-
-  // getLocalStorage() {
-  //   const valid = localStorage.getItem('state');
-  //   if (valid !== null) {
-  //     return JSON.parse(valid);
-  //   }
-  // }
-
   render() {
     const { name, email, assertions, score } = this.props;
     const hash = md5(email.toLowerCase()).toString();
     const API_URL = `https://www.gravatar.com/avatar/${hash}?s=100`;
-    // const headerInfo = this.getLocalStorage();
-    // const { player: { assertions, score } } = headerInfo;
 
     return (
       <header>

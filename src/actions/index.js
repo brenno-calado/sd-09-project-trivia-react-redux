@@ -11,18 +11,10 @@ export const GAME_QUESTIONS = 'GAME_QUESTIONS';
 export const LOADING_QUESTIONS = 'LOADING_QUESTIONS';
 export const ANSWERED_CORRECTLY = 'ANSWERED_CORRECTLY';
 
-export const newPlayerInfo = (name, email, score, assertions) => ({
+export const newPlayerInfo = (name, email) => ({
   type: NEW_PLAYER,
   name,
   email,
-  assertions,
-  score,
-});
-
-export const scoreUpdateAction = (score, assertions) => ({
-  type: SCORE_UPDATE,
-  assertions,
-  score,
 });
 
 const receiveToken = (gameToken) => ({
