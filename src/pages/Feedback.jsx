@@ -8,13 +8,13 @@ class Feedback extends React.Component {
     super(props);
     this.state = {
       showRanking: false,
-    }
+    };
 
     this.handleClikShowRankingBtn = this.handleClikShowRankingBtn.bind(this);
   }
 
   handleClikShowRankingBtn() {
-    this.setState({ showRanking: true});
+    this.setState({ showRanking: true });
   }
 
   render() {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { func } from 'prop-types';
 
 class ShowRankingBtn extends React.Component {
   render() {
@@ -14,5 +15,9 @@ class ShowRankingBtn extends React.Component {
     );
   }
 }
+
+ShowRankingBtn.propTypes = {
+  onclick: func.isRequired,
+};
 
 export default ShowRankingBtn;
