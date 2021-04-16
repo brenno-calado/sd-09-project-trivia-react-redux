@@ -18,7 +18,7 @@ export default class Feedback extends React.Component {
         <p>
           Você acertou
           {' '}
-          <span data-testid="feedback-total-score">
+          <span data-testid="feedback-total-question">
             { assertions }
           </span>
           {' '}
@@ -27,7 +27,7 @@ export default class Feedback extends React.Component {
         <p>
           Um total de
           {' '}
-          <span data-testid="feedback-total-question">
+          <span data-testid="feedback-total-score">
             { score }
           </span>
           {' '}

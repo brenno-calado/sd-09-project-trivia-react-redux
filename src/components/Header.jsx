@@ -4,10 +4,17 @@ import PropTypes from 'prop-types';
 
 class Header extends React.Component {
   render() {
-    const { picture, name, score } = this.props;
+    let userData = {};
 
-    // const userData = JSON.parse(localStorage.getItem('ranking'));
-    // const { picture, name, score } = userData;
+    if (this.props) {
+      userData = this.props;
+    } else {
+      const { player } = JSON.parse(localStorage.getItem('state'));
+      userData = player;
+    }
+
+    const { picture, name, score } = userData;
+
     return (
       <header>
         <img
