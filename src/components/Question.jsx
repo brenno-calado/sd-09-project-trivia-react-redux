@@ -24,7 +24,6 @@ class Question extends Component {
       timer: 30,
     };
     this.handleClick = this.handleClick.bind(this);
-    this.showNextQuestionButton = this.showNextQuestionButton.bind(this);
   }
 
   componentDidMount() {
@@ -32,13 +31,38 @@ class Question extends Component {
     this.interval = setInterval(() => this.tick(), milliseconds);
   }
 
+  componentDidUpdate(prevProps) {
+    const { data: currData } = this.props;
+    const { data: prevData } = prevProps;
+    if (currData !== prevData) {
+      const milliseconds = 1000;
+      this.interval = setInterval(() => this.tick(), milliseconds);
+      this.updateAnswers();
+    }
+  }
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
+  updateAnswers() {
+    const {
+      data: {
+        incorrect_answers: incorrectAnswers,
+        correct_answer: correctAnswer,
+      },
+    } = this.props;
+    this.setState({
+      clicked: false,
+      answers: [...incorrectAnswers, correctAnswer],
+      shuffledAnswers: this.shuffleAnswers([...incorrectAnswers, correctAnswer]),
+      timer: 30,
+    });
+  }
+
   handleClick(e) {
     const { innerText } = e.target;
-    const { sumScore, data: { difficulty } } = this.props;
+    const { sumScore, data: { difficulty }, onAnsweredQuestion } = this.props;
     const { answers, timer } = this.state;
     clearInterval(this.interval);
     this.setState(
@@ -47,6 +71,7 @@ class Question extends Component {
         if (answers.indexOf(innerText) === answers.length - 1) {
           sumScore(timer, scoreTable[difficulty]);
         }
+        onAnsweredQuestion();
       },
     );
   }
@@ -55,14 +80,6 @@ class Question extends Component {
     this.setState((state) => ({
       timer: state.timer - 1,
     }));
-  }
-
-  showNextQuestionButton() {
-    return (
-      <button type="button" data-testid="btn-next">
-        Próxima
-      </button>
-    );
   }
 
   shuffleAnswers(array) {
@@ -106,7 +123,7 @@ class Question extends Component {
 
   render() {
     const { data: { category, question } } = this.props;
-    const { clicked, timer } = this.state;
+    const { timer } = this.state;
     return (
       <>
         <section className="question-game">
@@ -114,7 +131,6 @@ class Question extends Component {
           <p data-testid="question-text">{ he.decode(question) }</p>
           { this.renderAnswers() }
         </section>
-        { clicked && this.showNextQuestionButton() }
         <div>
           {timer > 0 ? <p>{ timer }</p> : <p>0</p>}
         </div>
