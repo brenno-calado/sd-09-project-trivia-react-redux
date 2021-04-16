@@ -56,11 +56,10 @@
   left: 15%;
   margin: 6vh;
   position: absolute;
-  transform: scale(1);
-  transform: rotateX(-5deg) rotateY(-30deg);
+  top: -10%;
+  transform: scale(1) rotateX(-5deg) rotateY(-30deg);
   transform-style: preserve-3d;
   transition: transform 2s;
-  top: -10%;
   width: 17vh;
 }
 
@@ -112,7 +111,9 @@
 }
 
 .shape .bm {
+  background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png');
   background-position: center;
+  background-repeat: no-repeat;
   transform: rotateX(270deg) rotateY(0deg) translateZ(9vh);
 }
 
@@ -196,7 +197,7 @@
 }
 
 .btnLogin.play {
-  border-radius: 0 10px
+  border-radius: 0 10px;
 }
 
 
