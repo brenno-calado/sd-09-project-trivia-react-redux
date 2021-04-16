@@ -5,10 +5,10 @@
 }
 
 body {
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
   background-color: #000000f0;
+  height: 100%;
+  margin: 0 auto;
+  width: 100%;
 }
 
 input , button {

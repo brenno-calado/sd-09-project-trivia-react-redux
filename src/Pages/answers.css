@@ -1,26 +1,26 @@
 .rightAnswer {
-  border: 3px solid rgb(6, 240, 15);
-  max-height: 10vh;
-  font-size: 2vh;
   background-color: rgba(60, 255, 0, 0.411);
+  border: 3px solid rgb(6, 240, 15);
   color: white;
+  font-size: 2vh;
+  max-height: 10vh;
 }
 
 .wrongAnswer {
-  border: 3px solid red;
-  max-height: 10vh;
-  font-size: 2vh;
   background-color: rgba(255, 0, 0, 0.411);
+  border: 3px solid red;
   color: white;
+  font-size: 2vh;
+  max-height: 10vh;
 }
 
 button {
-  margin: 2px;
-  box-shadow: inset #0000008f 1px 1px 5px 2px, inset #0000008f -1px -1px 3px 2px;
-  border: none;
-  cursor: pointer;
   background-color: rgb(0 0 255 / 17%);
+  border: none;
+  box-shadow: inset #0000008f 1px 1px 5px 2px, inset #0000008f -1px -1px 3px 2px;
   color: #ffdead9e;
+  cursor: pointer;
+  margin: 2px;
 }
 
 

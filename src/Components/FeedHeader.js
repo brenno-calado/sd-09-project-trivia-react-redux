@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
+import './feedHeader.css';
 
 class FeedHeader extends Component {
   constructor() {
@@ -34,8 +35,8 @@ class FeedHeader extends Component {
           data-testid="header-profile-picture"
           src={ `https://www.gravatar.com/avatar/${hash}` }
         />
-        <p data-testid="header-player-name">{name}</p>
-        <p data-testid="header-score">{score}</p>
+        <p data-testid="header-player-name">{`Usuário: ${name}`}</p>
+        <p data-testid="header-score">{`Pontuação: ${score}`}</p>
       </div>
     );
   }

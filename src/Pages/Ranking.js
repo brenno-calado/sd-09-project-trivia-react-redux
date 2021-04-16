@@ -52,13 +52,28 @@ class Ranking extends Component {
           }).map((player, index) => (
             <div className={ `rankingCards ${index}` } key={ player.name }>
               <img className="rankingImg" src={ player.picture } alt="player" />
-              <p className="rankingName" data-testid={ `player-name-${index}` }>{ `Nome: ${player.name}` }</p>
-              <p className="rankingScore" data-testid={ `player-score-${index}` }>{ `Score: ${player.score}` }</p>
+              <p
+                className="rankingName"
+                data-testid={ `player-name-${index}` }
+              >
+                { `Nome: ${player.name}` }
+              </p>
+              <p
+                className="rankingScore"
+                data-testid={ `player-score-${index}` }
+              >
+                { `Score: ${player.score}` }
+              </p>
             </div>
           ))}
         </div>
         <Link to="/">
-          <button className="goBack" type="button" data-testid="btn-go-home" onClick={ this.setGlobalState }>
+          <button
+            className="goBack"
+            type="button"
+            data-testid="btn-go-home"
+            onClick={ this.setGlobalState }
+          >
             BACK TO HOME
           </button>
         </Link>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-// import questionsAdd from '../redux/actions';
 import Header from '../Components/Header';
 import TriviaCardsBA from '../Components/TriviaCardsBA';
 import TriviaCardsMA from '../Components/TriviaCardsMA';

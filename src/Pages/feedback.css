@@ -4,12 +4,12 @@
 .feedContainer {
   background-image: url('./hehefeed.jpg');
   background-position: center;
-  background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  background-size: cover;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 12vh 10vh 58vh 20vh;
+  height: 100vh;
 }
 
 .feedHeader img{
@@ -17,255 +17,265 @@
 }
 
 .feedHeader {
-  grid-row: 1;
-  grid-column-end: 4;
-  grid-column-start: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  width: 100%;
   background-color: #80808018;
   box-shadow: black 2px 2px 10px 5px, black -2px -2px 10px 5px;
-  justify-items: center;
+  display: grid;
+  grid-row: 1;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-end: 4;
+  grid-column-start: 1;
   height: 12vh;
+  justify-items: center;
+  width: 100%;
 }
 
 .feedCard {
-  grid-column: 2;
-  grid-row: 3;
-  background-color: #e0e0e033;
+  align-items: self-end;
   backdrop-filter: blur(4px) hue-rotate(45deg);
+  background-color: #e0e0e033;
+  border-radius: 20px;
   box-shadow: black 2px 2px 10px 5px, black -2px -2px 10px 5px;
   display: grid;
+  grid-column: 2;
+  grid-row: 3;
   grid-template-rows: 1fr 1fr 3fr 1fr;
   grid-template-columns: 1fr 5fr 1fr;
-  align-items: self-end;
-  border-radius: 20px;
 }
 
 .msg {
+  align-self: center;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3vh;
   grid-column: 2;
   grid-row: 3;
-  font-family: 'Permanent Marker', cursive;
-  align-self: center;
-  font-size: 3vh;
   text-align: center;
 }
 
 .score {
-  text-align: center;
-  grid-column: 2;
-  grid-row: 1;
   font-family: 'Permanent Marker', cursive;
   font-size: 3vh;
+  grid-column: 2;
+  grid-row: 1;
+  text-align: center;
 }
 
 .feedBtns {
+  display: flex;
   grid-column: 2;
   grid-row: 3;
   grid-row: 4;
-  display: flex;
   justify-content: space-between;
 }
 
 .btnReset, .btnRanking {
-  width: 20vh;
+  box-sizing: border-box;
+  font-size: 3vh;
   height: fit-content;
   min-height: 9vh;
   margin-bottom: 2vh;
-  font-size: 3vh;
-  box-sizing: border-box;
+  width: 20vh;
 }
 
 .rainbowContainer {
+  align-self: center;
+  display: grid;
+  filter: drop-shadow(15px 30px 4px black);
   grid-column: 2;
   grid-row: 3;
-  display: grid;
   grid-template-columns: 10px;
   grid-template-rows: 0px;
-  align-self: center;
-  top: 2vh;
-  position: absolute;
   left: 22vh;
+  position: absolute;
   transform: translate(-50%, -50%);
-  filter: drop-shadow(15px 30px 4px black);
+  top: 2vh;
 }
 
 .rainbowOne {
+  animation: rOne 1s linear infinite;
+  border-radius: 50%;
   grid-column: 1;
   grid-row: 1;
   width: 110px;
-  animation: rOne 1s linear infinite;
-  border-radius: 50%;
 }
 
 .rainbowTwo {
+  animation: rTwo 0.9s linear infinite;
+  border-radius: 50%;
   grid-column: 1;
   grid-row: 1;
   width: 120px;
-  border-radius: 50%;
-  animation: rTwo 0.9s linear infinite;
 }
 
 .rainbowThree {
+  animation: rThree 0.8s linear infinite;
+  border-radius: 50%;
   grid-column: 1;
   grid-row: 1;
   width: 130px;
-  border-radius: 50%;
-  animation: rThree 0.8s linear infinite;
 }
 
 .rainbowFour {
+  animation: rFour 0.7s linear infinite;
+  border-radius: 50%;
   grid-column: 1;
   grid-row: 1;
   width: 140px;
-  border-radius: 50%;
-  animation: rFour 0.7s linear infinite;
 }
 
 .rainbowFive {
+  animation: rFive 0.6s linear infinite;
+  border-radius: 50%;
   grid-column: 1;
   grid-row: 1;
   width: 150px;
-  border-radius: 50%;
-  animation: rFive 0.6s linear infinite;
 }
 
 .rainbowSix {
+  animation: rSix 1s linear infinite;
+  border-radius: 50%;
   grid-column: 1;
   grid-row: 1;
   width: 150px;
-  border-radius: 50%;
-  animation: rSix 1s linear infinite;
 }
 
 .rainbowSeven {
+  animation: rSeven 0.9s linear infinite;
+  border-radius: 50%;
   grid-column: 1;
   grid-row: 1;
   width: 140px;
-  border-radius: 50%;
-  animation: rSeven 0.9s linear infinite;
 }
 
 .rainbowEight {
+  animation: rEight 0.8s linear infinite;
+  border-radius: 50%;
   grid-column: 1;
   grid-row: 1;
   width: 130px;
-  border-radius: 50%;
-  animation: rEight 0.8s linear infinite;
 }
 
 .rainbowNine {
+  animation: rNine 0.7s linear infinite;
+  border-radius: 50%;
   grid-column: 1;
   grid-row: 1;
   width: 120px;
-  border-radius: 50%;
-  animation: rNine 0.7s linear infinite;
 }
 
 .rainbowTen{
+  animation: rTen 0.6s linear infinite;
+  border-radius: 50%;
   grid-column: 1;
   grid-row: 1;
   width: 150px;
-  border-radius: 50%;
-  animation: rTen 0.6s linear infinite;
 }
 
 @keyframes rOne {
   from { height: 1vh; width: 1vh;}
-  to{ height: 2vh;
-    width: 2vh;
-    transform: translate(-60px, -20px) ;
+  to{
+    background: red;
     border-radius: 50%;
-    background: red ;
+    height: 2vh;
+    transform: translate(-60px, -20px) ;
+    width: 2vh;
   }
 }
 
 @keyframes rTwo {
   from { height: 1vh; width: 1vh; }
-  to{ height: 2vh;
-    width: 2vh;
-    transform: translate(-60px, -20px) ;
-    border-radius: 50%;
+  to{
     background: yellow;
+    border-radius: 50%;
+    height: 2vh;
+    transform: translate(-60px, -20px);
+    width: 2vh;
   }
 }
 
 @keyframes rThree {
   from { height: 1vh; width: 1vh}
-  to{ height: 2vh;
-    width: 2vh;
-    transform: translate(60px, -20px) ;
-    border-radius: 50%;
+  to{
     background: green;
+    border-radius: 50%;
+    height: 2vh;
+    transform: translate(60px, -20px);
+    width: 2vh;
   }
 }
 
 @keyframes rFour {
   from { height: 1vh; width: 1vh}
-  to{ height: 2vh;
-    width: 2vh;
-    transform: translate(-60px, -50px) ;
-    border-radius: 50%;
+  to{
     background: blue;
+    border-radius: 50%;
+    height: 2vh;
+    transform: translate(-60px, -50px);
+    width: 2vh;
   }
 }
 
 @keyframes rFive {
   from { height: 1vh; width: 1vh}
-  to{ height: 2vh;
-    width: 2vh;
-    transform: translate(80px, -20px) ;
-    border-radius: 50%;
+  to{
     background: pink;
+    border-radius: 50%;
+    height: 2vh;
+    transform: translate(80px, -20px);
+    width: 2vh;
   }
 }
 
 @keyframes rSix {
   from { height: 1vh; width: 1vh}
-  to{ height: 2vh;
-    width: 2vh;
-    transform: translate(80px, -30px) ;
+  to{
+    background: red;
     border-radius: 50%;
-    background: red ;
+    height: 2vh;
+    width: 2vh;
+    transform: translate(80px, -30px);
   }
 }
 
 @keyframes rSeven {
   from { height: 1vh; width: 1vh}
-  to{ height: 2vh;
-    width: 2vh;
-    transform: translate(80px, -50px) ;
-    border-radius: 50%;
+  to{
     background: yellow;
+    border-radius: 50%;
+    height: 2vh;
+    transform: translate(80px, -50px) ;
+    width: 2vh;
   }
 }
 
 @keyframes rEight {
   from { height: 1vh; width: 1vh}
-  to{ height: 2vh;
-    width: 2vh;
-    transform: translate(-50px, -60px) ;
-    border-radius: 50%;
+  to{
     background: rgb(30, 255, 0);
+    border-radius: 50%;
+    height: 2vh;
+    transform: translate(-50px, -60px) ;
+    width: 2vh;
   }
 }
 
 @keyframes rNine {
   from { height: 1vh; width: 1vh}
-  to{ height: 2vh;
-    width: 2vh;
-    transform: translate(60px, -80px) ;
+  to{
     border-radius: 50%;
     background: rgb(0, 4, 255);
+    height: 2vh;
+    transform: translate(60px, -80px) ;
+    width: 2vh;
   }
 }
 
 @keyframes rTen {
   from { height: 1vh; width: 1vh}
-  to{ height: 2vh;
-    width: 2vh;
-    transform: translate(-60px, -20px) ;
-    border-radius: 50%;
+  to{
     background: rgb(255, 0, 221);
+    border-radius: 50%;
+    height: 2vh;
+    transform: translate(-60px, -20px) ;
+    width: 2vh;
   }
 }

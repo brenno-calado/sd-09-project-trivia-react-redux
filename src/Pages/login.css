@@ -6,86 +6,86 @@
 }
 
 .backgroundLogin {
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: url('https://blog.classlist.com/wp-content/uploads/2020/04/iStock-1032132026-1.jpg');
   background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 20px;
   grid-column: 2;
   grid-row: 2;
-  background-image: url('https://blog.classlist.com/wp-content/uploads/2020/04/iStock-1032132026-1.jpg');
 }
 
 .container {
+  background: #000000a3;
+  border-radius: 20px;
   display: grid;
   flex-direction: column;
-  justify-content: center;
-  width: 40vh;
-  height: 80vh;
-  background: #000000a3;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 20px;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+  height: 80vh;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  width: 40vh;
 }
 
 .inputContainer {
-  grid-row: 3;
+  align-items: center;
+  align-self: end;
   display: flex;
   flex-direction: column;
-  align-self: end;
+  grid-row: 3;
   justify-self: center;
   width: 50vh;
-  align-items: center;
 }
 
 .buttonContainer {
-  grid-row: 4;
-  display: flex;
-  justify-content: space-evenly;
   align-self: center;
-  width: 50vh;
   border-radius: 20px;
+  display: flex;
+  grid-row: 4;
+  justify-content: space-evenly;
+  width: 50vh;
 }
 
 .shape {
+  animation: spin 5s infinite linear;
   grid-row: 2;
-  position: absolute;
-  margin: 6vh;
-  width: 17vh;
   height: 17vh;
-  transform-style: preserve-3d;
-  transition: transform 2s;
+  left: 15%;
+  margin: 6vh;
+  position: absolute;
+  width: 17vh;
   transform: scale(1);
   transform: rotateX(-5deg) rotateY(-30deg);
-  animation: spin 5s infinite linear;
+  transform-style: preserve-3d;
+  transition: transform 2s;
   top: -10%;
-  left: 15%;
 }
 
 .shape > div {
+  background-color: rgba(255, 255, 255, 0.267);
+  border: 1vh solid darkgreen;
+  height: 17vh;
+  opacity: .7;
   position: absolute;
   width: 17vh;
-  height: 17vh;
-  border: 1vh solid darkgreen;
-  background-color: rgba(255, 255, 255, 0.267);
-  opacity: .7;
 }
 
-.shape a {
-  text-decoration: none;
-  text-align: center;
+.shape span {
   display: block;
   font-size: 12vh;
-  width: 100%;
   height: 100%;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
 }
 
 .shape .ft {
-  transform: translateZ(9vh);
   background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png'); background-repeat: no-repeat;
   background-position: center;
+  transform: translateZ(9vh);
 }
 
 .shape .rt {
@@ -93,23 +93,22 @@
 }
 
 .shape .bk {
-  transform: rotateY(180deg) translateZ(9vh);
   background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png'); background-repeat: no-repeat;
   background-position: center;
+  transform: rotateY(180deg) translateZ(9vh);
 }
 
 .shape .lt { transform: rotateY(270deg) translateZ(9vh); }
 
 .shape .tp {
-  transform: rotateX(90deg) translateZ(9vh);
   background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png'); background-repeat: no-repeat;
   background-position: center;
+  transform: rotateX(90deg) translateZ(9vh);
 }
 
 .shape .bm {
-  transform: rotateX(270deg) rotateY(0deg) translateZ(9vh);
-  background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png'); background-repeat: no-repeat;
   background-position: center;
+  transform: rotateX(270deg) rotateY(0deg) translateZ(9vh);
 }
 
 .shape.show-ft { transform: translateZ(9vh); }
@@ -127,8 +126,8 @@
 
 
 .inputLogin {
-  color: navajowhite;
   border: 0;
+  color: navajowhite;
   padding: 5px 0 7px;
   border: 1px solid transparent;
   border-bottom-color: darkgreen;
@@ -141,26 +140,25 @@
 }
 
 .inputLogin:hover {
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: Animate;
+  animation-timing-function: linear;
+  border-bottom: 2px solid darkgreen;
   padding: 5px 14px 7px;
   transition: 0.4s;
   width: 40vh;
-  border-bottom: 2px solid darkgreen;
-  animation-name: Animate;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  border-radius: 20px;
 }
 
 .btnLogin {
-  height: 5vh;
   background: none;
-  width: 10vh;
-  color: white;
   border: none;
   box-shadow: white -1px 0px 4px 3px, rgb(13 223 31) 0px 0px 5px 5px;
-  transition: 0.3s;
+  color: white;
   font-size: 2vh;
+  height: 5vh;
+  transition: 0.3s;
+  width: 10vh;
 }
 
 .btnLogin.setup {
@@ -179,15 +177,15 @@
 .setting {
   animation: rotate linear infinite 5s;
   font-size: 3vh;
-  text-align: center;
   margin-top: 3px;
+  text-align: center;
 }
 
 svg.play {
-  font-size: 4vh;
-  text-align: center;
-  margin-top: 3px;
   animation: start linear infinite 0.5s;
+  font-size: 4vh;
+  margin-top: 3px;
+  text-align: center;
 }
 
 @keyframes start {
@@ -205,10 +203,10 @@ svg.play {
 
 
 @keyframes Animate {
-  0% { border-color: darkgreen;  }
-  25% { border-color: lightgreen;  }
-  50% { border-color: greenyellow;  }
-  75% { border-color: lightgreen;  }
-  100% { border-color: darkgreen;  }
+  0% { border-bottom: darkgreen 3px solid;  }
+  25% { border-bottom: lightgreen 3px solid;  }
+  50% { border-bottom: greenyellow 3px solid;  }
+  75% { border-bottom: lightgreen 3px solid;  }
+  100% { border-bottom: darkgreen 3px solid;  }
 }
 

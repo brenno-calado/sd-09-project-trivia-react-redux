@@ -1,70 +1,64 @@
 .triviaCard {
-  background-color: #80808033;
-  grid-column: 2;
-  grid-row: 2;
+  align-items: self-end;
   backdrop-filter: blur(4px) hue-rotate(45deg);
-  box-shadow: black 2px 2px 10px 5px, black -2px -2px 10px 5px;
-  display: grid;
-  grid-template-rows: 1fr 1fr 3fr 1fr;
-  grid-template-columns: 1fr 5fr 1fr;
+  background-color: #80808033;
   border-bottom-left-radius: 35%;
   border-top-right-radius: 35%;
-  /* border-right: 10px solid #ff000054;
-  border-bottom: 10px solid #ff000054;
-  border-top: 10px solid #0000ff52;
-  border-left: 10px #0000ff52 solid;
-  animation: hue infinite 1s linear; */
-  align-items: self-end;
+  box-shadow: black 2px 2px 10px 5px, black -2px -2px 10px 5px;
+  display: grid;
+  grid-column: 2;
+  grid-row: 2;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 1fr 1fr 3fr 1fr;
 }
 
 .category {
+  color: #ffdead9e;
+  font-size: 3vh;
+  font-weight: 700;
   grid-column: 2;
   grid-row: 1;
-  font-size: 3vh;
-  color: #ffdead9e;
-  font-weight: 700;
   text-shadow: black 2px 1px 5px;
 }
 
 .text {
+  color: #ffdead9e;
+  font-size: 2vh;
+  font-weight: 700;
   grid-column: 2;
   grid-row: 2;
-  font-size: 2vh;
-  color: #ffdead9e;
-  font-weight: 700;
   text-shadow: black 2px 1px 5px;
 }
 
 div.answers{
-  grid-column: 2;
-  grid-row: 3;
   display: grid;
   font-size: 1vh;
+  grid-column: 2;
   grid-column-end: none;
+  grid-row: 3;
   height: 15vh;
   margin: 3vh;
 }
 
 
 button.next{
-  grid-column: 3;
-  grid-row: 2;
   align-self: center;
-  height: 10vh;
+  animation: start 0.5s linear infinite;
   background: none;
   border: none;
-  font-size: 10vh;
   color: #008000b8;
   filter: drop-shadow(8px 3px 1px black);
-  animation: start 0.5s linear infinite;
-  box-shadow: none;
+  font-size: 10vh;
+  grid-column: 3;
+  grid-row: 2;
+  height: 10vh;
 }
 
 button {
-  box-shadow: inset #0000008f 1px 1px 0 1px, inset #0000008f -1px -1px 0 1px;
-  border: none;
-  cursor: pointer;
   background-color: rgb(0 0 255 / 17%);
+  border: none;
+  box-shadow: inset #0000008f 1px 1px 0 1px, inset #0000008f -1px -1px 0 1px;
+  cursor: pointer;
 }
 
 @keyframes start {
@@ -73,38 +67,29 @@ button {
 }
 
 .timer {
+  align-self: end;
+  color: #004dff;
+  display: flex;
+  filter: drop-shadow(5px 4px 6px black);
   grid-column: 3;
   grid-row: 1;
-  display: flex;
-  align-self: end;
-  /* justify-self: center; */
-  color: #004dff;
-  filter: drop-shadow(5px 4px 6px black);
 }
 
 .counter {
-  font-size: 10vh;
-  position: absolute;
+  border-radius: 50%;
   color: rgba(201, 24, 24, 0.932);
-  z-index: 10;
+  filter: drop-shadow(5px 4px 6px black);
+  font-size: 10vh;
+  height: 12vh;
+  left: 15px;
+  position: absolute;
   text-align: center;
   top: 10px;
-  left: 15px;
-  border-radius: 50%;
-  height: 12vh;
   width: 12vh;
-  filter: drop-shadow(5px 4px 6px black);
+  z-index: 10;
 }
 
 @keyframes grow {
   0% {font-size: 10vh}
   100% {font-size: 11vh}
 }
-
-/* @keyframes hue {
-  0% { border-color: #2f5be05d;  }
-  25% { border-color: rgba(230, 64, 64, 0.404);  }
-  50% { border-color: rgba(24, 219, 17, 0.247);  }
-  75% { border-color: rgba(230, 64, 64, 0.274);  }
-  100% { border-color: #2f5be03f;  }
-} */
