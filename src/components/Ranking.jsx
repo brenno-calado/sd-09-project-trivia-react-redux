@@ -9,7 +9,7 @@ class RankingList extends Component {
     const { playerData } = this.props;
     const mockedRank = [
       { name: 'hamjito', score: 85, picture: placeholder },
-      { name: 'murilão', score: 90, picture: placeholder },
+      { name: 'murilove', score: 90, picture: placeholder },
       { name: 'nato', score: 82, picture: placeholder },
       { name: 'ricci', score: 87, picture: placeholder },
       playerData,
@@ -30,12 +30,10 @@ class RankingList extends Component {
   render() {
     return (
       <main>
-        <main>
-          <h1>Ranking</h1>
-          <ol>
-            { this.renderRankingList() }
-          </ol>
-        </main>
+        <h1 data-testid="ranking-title">Ranking</h1>
+        <ol>
+          { this.renderRankingList() }
+        </ol>
       </main>
     );
   }
