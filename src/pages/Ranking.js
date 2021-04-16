@@ -1,5 +1,6 @@
 import { MD5 } from 'crypto-js';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Ranking extends React.Component {
   constructor() {
@@ -34,10 +35,21 @@ class Ranking extends React.Component {
     }
   }
 
+  renderButtonReplay() {
+    return (
+      <Link to="/">
+        <button type="button" data-testid="btn-go-home">
+          Jogar novamente
+        </button>
+      </Link>
+    );
+  }
+
   render() {
     return (
       <main>
         {this.renderUserList()}
+        {this.renderButtonReplay()}
       </main>
     );
   }
