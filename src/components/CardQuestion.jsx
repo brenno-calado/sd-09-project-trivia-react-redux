@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { scoreUpdateAction } from '../actions';
 import './CardQuestion.css';
 
 class CardQuestion extends React.Component {
@@ -10,6 +11,8 @@ class CardQuestion extends React.Component {
       isSelected: false,
       time: {},
       seconds: 30,
+      assertions: 0,
+      score: 0,
     };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
@@ -42,7 +45,6 @@ class CardQuestion extends React.Component {
   getLocalStorage() {
     const valid = localStorage.getItem('state');
     if (valid !== null) {
-      console.log(valid);
       return JSON.parse(valid);
     }
   }
@@ -75,6 +77,8 @@ class CardQuestion extends React.Component {
 
   recordScore(answer, sec) {
     const { getQuestions: { questions: { results } } } = this.props;
+    const { dispatchScore } = this.props;
+    const { assertions, score } = this.state;
     //  Trocar essa const index pelo contador que a Mayara fez
     const index = 0;
     const currentQuestion = results[index];
@@ -82,7 +86,11 @@ class CardQuestion extends React.Component {
     if (answer === currentQuestion.correct_answer) {
       state.player.assertions += 1;
       state.player.score += this.calculateScore(sec, currentQuestion.difficulty);
-      console.log('teste');
+      this.setState({
+        assertions: state.player.assertions,
+        score: state.player.score,
+      });
+      dispatchScore(score, assertions);
       return localStorage.setItem('state', JSON.stringify(state));
     }
   }
@@ -166,6 +174,7 @@ CardQuestion.propTypes = {
   }),
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  dispatchScore: PropTypes.func,
 };
 CardQuestion.defaultProps = {
   getQuestions: PropTypes.shape({
@@ -175,10 +184,14 @@ CardQuestion.defaultProps = {
       results: PropTypes.arrayOf(Object),
     }),
   }),
+  dispatchScore: PropTypes.func,
 };
 const mapStateToProps = (state) => ({
   getQuestions: state.questions,
   name: state.player.name,
   email: state.player.email,
 });
-export default connect(mapStateToProps)(CardQuestion);
+const mapDispatchToProps = (dispatch) => ({
+  dispatchScore: (score, assertions) => dispatch(scoreUpdateAction(score, assertions)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(CardQuestion);

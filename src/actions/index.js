@@ -6,13 +6,22 @@ import {
 
 export const NEW_PLAYER = 'NEW_PLAYER';
 export const NEW_GAME = 'NEW_GAME';
+export const SCORE_UPDATE = 'SCORE_UPDATE';
 export const GAME_QUESTIONS = 'GAME_QUESTIONS';
 export const LOADING_QUESTIONS = 'LOADING_QUESTIONS';
 
-export const newPlayerInfo = (name, email) => ({
+export const newPlayerInfo = (name, email, score, assertions) => ({
   type: NEW_PLAYER,
   name,
   email,
+  assertions,
+  score,
+});
+
+export const scoreUpdateAction = (score, assertions) => ({
+  type: SCORE_UPDATE,
+  assertions,
+  score,
 });
 
 const receiveToken = (gameToken) => ({
