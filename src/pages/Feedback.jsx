@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import FeedbackMsg from '../components/FeedbackMsg';
+import FeedbackInfo from '../components/FeedbackInfo';
 
 class Feedback extends React.Component {
   render() {
@@ -8,6 +9,7 @@ class Feedback extends React.Component {
       <div>
         <Header />
         <FeedbackMsg />
+        <FeedbackInfo />
       </div>
     );
   }
