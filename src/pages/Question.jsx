@@ -193,6 +193,7 @@ class Question extends React.Component {
 
   render() {
     const { handleIndex } = this;
+    const { indexQuestion, numQuestion } = this.state;
     return (
       <div className="question">
         { this.createHeader() }
@@ -204,7 +205,7 @@ class Question extends React.Component {
           className="btn-next"
           onClick={ () => handleIndex() }
         >
-          PRÓXIMO
+          { indexQuestion === numQuestion ? 'FINALIZAR' : 'PRÓXIMO'}
         </button>
       </div>
     );

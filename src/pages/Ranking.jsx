@@ -8,30 +8,30 @@ class Ranking extends React.Component {
   }
 
   renderRankingList() {
-    const rankingList = [
-      { name: 'Felipe', score: 10, picture: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/7.svg' },
-      { name: 'Nanda', score: 30, picture: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/54.svg' },
-      { name: 'Deretti', score: 40, picture: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/134.svg' },
-      { name: 'Paranauê', score: 20, picture: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/237.svg' },
-    ]; // array de teste enquanto não tem o LocalStorage definido
-    return (
-      <ul>
-        { rankingList.sort((a, b) => b.score - a.score).map((user, index) => (
-          <li key={ index }>
-            <img src={ user.picture } alt={ user.name } />
-            <span data-testid={ `player-name-${index}` }>{ user.name }</span>
-            <span data-testid={ `player-score-${index}` }>{ user.score }</span>
-          </li>
-        )) }
-      </ul>
-    );
+    const rankingList = JSON.parse(localStorage.getItem('ranking'));
+    if (rankingList) {
+      return (
+        <ul>
+          { rankingList.sort((a, b) => b.score - a.score).map((user, index) => (
+            <li key={ index }>
+              <img src={ user.picture } alt={ user.name } />
+              <span data-testid={ `player-name-${index}` }>{ user.name }</span>
+              <span data-testid={ `player-score-${index}` }>{ user.score }</span>
+            </li>
+          )) }
+        </ul>
+      );
+    }
   }
 
   render() {
     return (
       <div>
+        <h1 data-testid="ranking-title">RANKING</h1>
         { this.renderRankingList() }
-        <Link to="/" data-testid="btn-go-home">Voltar para a tela inicial</Link>
+        <Link to="/">
+          <button data-testid="btn-go-home" type="button">Jogar novamente</button>
+        </Link>
       </div>
     );
   }
