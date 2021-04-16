@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 
 class Feedback extends React.Component {
@@ -46,11 +47,22 @@ class Feedback extends React.Component {
     );
   }
 
+  renderButtonReplay() {
+    return (
+      <Link to="/">
+        <button type="button" data-testid="btn-play-again">
+          Jogar novamente
+        </button>
+      </Link>
+    );
+  }
+
   render() {
     return (
       <main>
         <Header />
         {this.renderResultsInfo()}
+        {this.renderButtonReplay()}
       </main>
     );
   }
