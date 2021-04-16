@@ -678,7 +678,7 @@ describe('17 - [TELA DE RANKING] Crie a tela de _ranking_', () => {
 });
 
 describe('18 - [TELA DE RANKING] Crie um botão para ir ao início', () => {
-  it('Volta para a tela inicial', () => {
+  it.only('Volta para a tela inicial', () => {
     cy.visit('http://localhost:3000/');
     cy.clearLocalStorage();
     cy.get(INPUT_PLAYER_NAME_SELECTOR).type(name1);
