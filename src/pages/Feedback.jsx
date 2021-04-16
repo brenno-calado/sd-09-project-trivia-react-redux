@@ -2,6 +2,8 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import ShowRankingBtn from '../components/ShowRankingBtn';
+import FeedbackMsg from '../components/FeedbackMsg';
+import FeedbackInfo from '../components/FeedbackInfo';
 
 class Feedback extends React.Component {
   constructor(props) {
@@ -22,6 +24,8 @@ class Feedback extends React.Component {
     return (
       <div>
         <Header />
+        <FeedbackMsg />
+        <FeedbackInfo />
         <ShowRankingBtn onclick={ this.handleClikShowRankingBtn } />
         {showRanking && <Redirect to="/ranking" />}
       </div>
