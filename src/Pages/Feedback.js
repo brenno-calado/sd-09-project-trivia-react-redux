@@ -68,7 +68,7 @@ class Feedback extends Component {
     if (correctAnswers >= tres) {
       return (
         <p data-testid="feedback-text">
-          Mandou bem! Mas será que está em primeiro no ranking?
+          Mandou bem!
         </p>
       );
     }

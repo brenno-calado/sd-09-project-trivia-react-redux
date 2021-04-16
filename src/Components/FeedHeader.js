@@ -35,8 +35,8 @@ class FeedHeader extends Component {
           data-testid="header-profile-picture"
           src={ `https://www.gravatar.com/avatar/${hash}` }
         />
-        <p data-testid="header-player-name">{`Usuário: ${name}`}</p>
-        <p data-testid="header-score">{`Pontuação: ${score}`}</p>
+        <p data-testid="header-player-name">{name}</p>
+        <p data-testid="header-score">{score}</p>
       </div>
     );
   }

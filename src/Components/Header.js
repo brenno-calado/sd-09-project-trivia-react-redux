@@ -13,13 +13,13 @@ class Header extends Component {
           className="playerName"
           data-testid="header-player-name"
         >
-          {`Usuário: ${name}`}
+          {name}
         </p>
         <p
           className="playerScore"
           data-testid="header-score"
         >
-          {`Pontuação atual: ${score}`}
+          {score}
         </p>
       </div>
     );

@@ -56,7 +56,7 @@ class Ranking extends Component {
                 className="rankingName"
                 data-testid={ `player-name-${index}` }
               >
-                { `Nome: ${player.name}` }
+                {player.name}
               </p>
               <p
                 className="rankingScore"

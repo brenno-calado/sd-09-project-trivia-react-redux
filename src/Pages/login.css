@@ -1,8 +1,8 @@
 .grid {
   display: grid;
-  height: 100vh;
   grid-template-columns: 10% 80% 10%;
   grid-template-rows: 5% 90% 5%;
+  height: 100vh;
 }
 
 .backgroundLogin {
@@ -25,8 +25,8 @@
   justify-content: center;
   left: 50%;
   position: absolute;
-  transform: translate(-50%, -50%);
   top: 50%;
+  transform: translate(-50%, -50%);
   width: 40vh;
 }
 
@@ -56,19 +56,19 @@
   left: 15%;
   margin: 6vh;
   position: absolute;
-  width: 17vh;
   transform: scale(1);
   transform: rotateX(-5deg) rotateY(-30deg);
   transform-style: preserve-3d;
   transition: transform 2s;
   top: -10%;
+  width: 17vh;
 }
 
 .shape > div {
   background-color: rgba(255, 255, 255, 0.267);
   border: 1vh solid darkgreen;
   height: 17vh;
-  opacity: .7;
+  opacity: 0.7;
   position: absolute;
   width: 17vh;
 }
@@ -84,8 +84,8 @@
 
 .shape .ft {
   background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png');
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   transform: translateZ(9vh);
 }
 
@@ -95,8 +95,8 @@
 
 .shape .bk {
   background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png');
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   transform: rotateY(180deg) translateZ(9vh);
 }
 
@@ -106,8 +106,8 @@
 
 .shape .tp {
   background-image: url('https://blog.betrybe.com/wp-content/uploads/2020/12/main_logo.png');
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   transform: rotateX(90deg) translateZ(9vh);
 }
 
@@ -183,7 +183,7 @@
 .btnLogin {
   background: none;
   border: none;
-  box-shadow: white -1px 0px 4px 3px , rgb(13 223 31) 0px 0px 5px 5px;
+  box-shadow: white -1px 0 4px 3px , rgb(13 223 31) 0 0 5px 5px;
   color: white;
   font-size: 2vh;
   height: 5vh;
@@ -192,11 +192,11 @@
 }
 
 .btnLogin.setup {
-  border-radius: 10px 0px;
+  border-radius: 10px 0;
 }
 
 .btnLogin.play {
-  border-radius: 0px 10px
+  border-radius: 0 10px
 }
 
 
@@ -211,7 +211,7 @@
   text-align: center;
 }
 
-svg.play {
+.play {
   animation: start linear infinite 0.5s;
   font-size: 4vh;
   margin-top: 3px;
@@ -239,7 +239,7 @@ svg.play {
 @keyframes Pulse {
 
   to {
-    box-shadow: white -1px 0px 4px 3px, rgb(13 223 31) 0px 0px 5px 7px;
+    box-shadow: white -1px 0 4px 3px , rgb(13 223 31) 0 0 5px 7px;
   }
 }
 
