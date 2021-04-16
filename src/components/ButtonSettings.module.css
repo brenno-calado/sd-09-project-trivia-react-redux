@@ -1,0 +1,26 @@
+.button {
+  background-color: rgb(0, 23, 39);
+  background-image: url('../img/config.png');
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  border: 2px solid rgb(5, 36, 56);
+  border-radius: 3px;
+  box-shadow: yellow 0 0 10px 1px;
+  color: white;
+  font-size: 16px;
+  height: 40px;
+  line-height: 16px;
+  margin: 15px auto;
+  padding: 6px;
+  padding-left: 20px;
+  width: 125px;
+}
+
+.button:hover {
+  background-color: rgb(3, 46, 77);
+}
+
+.button:active {
+  background-color: rgb(70, 106, 133);
+}
