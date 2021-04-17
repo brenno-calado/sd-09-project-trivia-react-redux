@@ -5,7 +5,8 @@ import './Answer.css';
 
 class Answer extends Component {
   render() {
-    const { text, dataTestId, isClicked, onHandleClick } = this.props;
+    const { text, dataTestId, isClicked, onHandleClick, timer, disabled } = this.props;
+    const isTimeOver = timer < 0;
 
     return (
       <button
@@ -13,6 +14,7 @@ class Answer extends Component {
         className={ isClicked }
         data-testid={ dataTestId }
         onClick={ onHandleClick }
+        disabled={ isTimeOver || disabled }
       >
         { text }
       </button>

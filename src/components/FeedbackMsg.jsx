@@ -1,28 +1,36 @@
 import React from 'react';
+import { number } from 'prop-types';
 import { connect } from 'react-redux';
 
 class FeedbackMsg extends React.Component {
-  // verifyNumberOfPoints() {
-  //   const { pointCounter } = this.props;
-  //   if (pointCounter < 3) {
-  //     return "Podia ser melhor..."
-  //   } else {
-  //     return "Mandou bem!"
-  //   }
-  // }
+  verifyNumberOfPoints() {
+    const { pointCounter } = this.props;
+    const three = 3;
+    if (pointCounter >= three) {
+      return 'Mandou bem!';
+    }
+    return 'Podia ser melhor...';
+  }
 
   render() {
     return (
       <div>
-        <p data-testid="feedback-text">Message</p>
+        <p data-testid="feedback-text">
+          {
+            this.verifyNumberOfPoints()
+          }
+        </p>
       </div>
-      // <p data-testid="feedback-text">{ this.verifyNumberOfPoints() }</p>
     );
   }
 }
 
-// const mapStateToProps = (state) ({
-//   pointCounter: state.handleScore.score;
-// });
+FeedbackMsg.propTypes = {
+  pointCounter: number,
+}.isRequired;
+
+const mapStateToProps = (state) => ({
+  pointCounter: state.scoreReducer.assertions,
+});
 
 export default connect(mapStateToProps)(FeedbackMsg);

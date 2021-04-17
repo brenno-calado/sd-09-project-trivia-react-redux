@@ -15,6 +15,7 @@ function loginReducer(state = INITIAL_STATE, action) {
       name: action.name,
       email: action.email,
       token: action.token,
+      gravatarEmail: action.gravatarEmail,
     };
   case RECEIVE_ERROR_TOKEN_API:
     return { ...state, errorToken: true };
