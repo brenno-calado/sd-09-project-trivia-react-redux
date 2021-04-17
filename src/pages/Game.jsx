@@ -8,8 +8,11 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      greenBorder: 'btn',
+      redBorder: 'btn',
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -17,7 +20,15 @@ class Game extends React.Component {
     questionFetch();
   }
 
+  handleClick() {
+    this.setState({
+      greenBorder: 'btn green-border',
+      redBorder: 'btn red-border',
+    });
+  }
+
   render() {
+    const { greenBorder, redBorder } = this.state;
     const { results } = this.props;
     // console.log(results);
     console.log(results !== '' ? results[0].category : 0);
@@ -36,7 +47,8 @@ class Game extends React.Component {
           <div>
             <button
               type="button"
-              className="btn"
+              className={ greenBorder }
+              onClick={ this.handleClick }
               data-testid="correct-answer"
             >
               { results !== '' ? results[0].correct_answer : 0}
@@ -45,7 +57,8 @@ class Game extends React.Component {
               <button
                 key={ index }
                 type="button"
-                className="btn"
+                className={ redBorder }
+                onClick={ this.handleClick }
                 data-testid={ `wrong-answer-${index}` }
               >
                 {answer}
