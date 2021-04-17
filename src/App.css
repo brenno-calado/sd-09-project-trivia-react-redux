@@ -1,10 +1,18 @@
+body {
+  background-color: #282c34;
+}
+
 .App {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
 }
 
 .App-logo {
-  height: 120px;
-  margin-top: 10px;
+  height: 100px;
+  margin-top: 20px;
   pointer-events: none;
 }
 
@@ -25,12 +33,11 @@
 
 .App-header {
   align-items: center;
-  background-color: #282c34;
   color: white;
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
-  height: 20vh;
+  height: 120px;
   justify-content: center;
 }
 

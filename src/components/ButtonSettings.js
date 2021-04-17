@@ -6,13 +6,12 @@ class ButtonSettings extends React.Component {
   render() {
     return (
       <Link to="/settings">
-        <button
+        <span
           className={ style.button }
           data-testid="btn-settings"
           type="button"
-        >
-          Settings
-        </button>
+          aria-label="Settings"
+        />
       </Link>
     );
   }

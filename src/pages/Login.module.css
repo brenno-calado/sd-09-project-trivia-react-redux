@@ -1,15 +1,15 @@
 .section {
   align-items: center;
-  background-color: #282c34;
   color: white;
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
-  height: 80vh;
   justify-content: center;
+  margin-top: 40px;
 }
 
 .divInput {
+  min-width: 300px;
   width: 60%;
 }
 
