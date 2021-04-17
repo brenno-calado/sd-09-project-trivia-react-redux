@@ -1,0 +1,47 @@
+.header {
+  align-items: center;
+  border: 5px groove grey;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  max-width: 600px;
+  width: 70%;
+}
+
+.name {
+  color: white;
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 900;
+  margin: 0;
+}
+
+.img {
+  border-radius: 50%;
+  height: 60px;
+  margin: 0 15px;
+  padding: 3px;
+  width: 60px;
+}
+
+@media ( min-width : 320px ) {
+
+  .name {
+    font-size: 16px;
+  }
+}
+
+@media ( min-width : 450px ) {
+
+  .name {
+    font-size: 25px;
+  }
+}
+
+
+@media ( min-width : 768px ) {
+
+  .name {
+    font-size: 30px;
+  }
+}
