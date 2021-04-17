@@ -12,10 +12,14 @@ class Game extends React.Component {
     this.shuffle = this.shuffle.bind(this);
     this.getAnswers = this.getAnswers.bind(this);
     this.decodeHTMLEntities = this.decodeHTMLEntities.bind(this);
+    this.timer = this.timer.bind(this);
     this.state = {
       nextButton: 'none',
       counter: 0,
       answers: '',
+      time: 30,
+      intervalConst: 0,
+      disableAnwsers: false,
     };
   }
 
@@ -23,6 +27,7 @@ class Game extends React.Component {
     const { questionFetch } = this.props;
     await questionFetch();
     this.getAnswers();
+    this.timer();
   }
 
   getAnswers() {
@@ -59,7 +64,10 @@ class Game extends React.Component {
       counter: counter + 1,
       nextButton: 'none',
     });
+    const { intervalConst } = this.state;
+    clearInterval(intervalConst);
     this.getAnswers();
+    this.timer();
   }
 
   shuffle(array) {
@@ -76,9 +84,29 @@ class Game extends React.Component {
     return array;
   }
 
+  timer() {
+    const oneSecond = 1000;
+    const intervalConst = setInterval(() => {
+      const { time } = this.state;
+      console.log(time);
+      this.setState(() => ({
+        time: time - 1,
+      }),
+      () => {
+        if (time <= 1) {
+          console.log('time out');
+          this.setState({
+            disableAnwsers: true,
+          });
+          clearInterval(intervalConst);
+        }
+      });
+    }, oneSecond);
+  }
+
   render() {
     const { results } = this.props;
-    const { nextButton, counter, answers } = this.state;
+    const { nextButton, counter, answers, time, disableAnwsers } = this.state;
     console.log(results !== '' ? results[counter].category : 0);
     return (
       <div>
@@ -94,6 +122,10 @@ class Game extends React.Component {
             <div data-testid="question-text">
               { results !== '' ? this.decodeHTMLEntities(results[counter].question) : ''}
             </div>
+            <div className="timer">
+              Tempo:
+              { time }
+            </div>
           </div>
           <div className="buttons">
             { answers !== '' ? answers.map((answer, index) => (
@@ -103,6 +135,7 @@ class Game extends React.Component {
                 className="btn"
                 data-testid={ answer.correct }
                 onClick={ this.firstClick }
+                disabled={ disableAnwsers }
               >
                 { this.decodeHTMLEntities(answer.result) }
               </button>
@@ -115,6 +148,7 @@ class Game extends React.Component {
               data-testid="btn-next"
               style={ { display: nextButton } }
               onClick={ this.nextQuestion }
+              disabled={ disableAnwsers }
             >
               Próxima
             </button>
