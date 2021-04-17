@@ -1,33 +1,25 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import Header from '../components/Header';
+import { Link } from 'react-router-dom';
+
 import ShowRankingBtn from '../components/ShowRankingBtn';
+import Header from '../components/Header';
+import PlayAgainBtn from '../components/PlayAgainBtn';
 import FeedbackMsg from '../components/FeedbackMsg';
 import FeedbackInfo from '../components/FeedbackInfo';
 
 class Feedback extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showRanking: false,
-    };
-
-    this.handleClikShowRankingBtn = this.handleClikShowRankingBtn.bind(this);
-  }
-
-  handleClikShowRankingBtn() {
-    this.setState({ showRanking: true });
-  }
-
   render() {
-    const { showRanking } = this.state;
     return (
       <div>
         <Header />
         <FeedbackMsg />
         <FeedbackInfo />
-        <ShowRankingBtn onclick={ this.handleClikShowRankingBtn } />
-        {showRanking && <Redirect to="/ranking" />}
+        <Link to="/ranking">
+          <ShowRankingBtn />
+        </Link>
+        <Link to="/">
+          <PlayAgainBtn />
+        </Link>
       </div>
     );
   }
