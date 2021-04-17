@@ -96,6 +96,7 @@
   border-radius: 10px;
   box-shadow: black 5px 5px 15px 5px;
   color: white;
+  cursor: pointer;
   display: block;
   font-size: 16px;
   line-height: 16px;
