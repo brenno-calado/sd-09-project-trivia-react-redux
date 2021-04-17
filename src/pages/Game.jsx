@@ -7,54 +7,122 @@ import { fetchApi } from '../actions';
 class Game extends React.Component {
   constructor(props) {
     super(props);
+    this.firstClick = this.firstClick.bind(this);
+    this.nextQuestion = this.nextQuestion.bind(this);
+    this.shuffle = this.shuffle.bind(this);
+    this.getAnswers = this.getAnswers.bind(this);
+    this.decodeHTMLEntities = this.decodeHTMLEntities.bind(this);
     this.state = {
-
+      nextButton: 'none',
+      counter: 0,
+      answers: '',
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { questionFetch } = this.props;
-    questionFetch();
+    await questionFetch();
+    this.getAnswers();
+  }
+
+  getAnswers() {
+    const { results } = this.props;
+    const { counter } = this.state;
+    const correctAnswer = {
+      correct: 'correct-answer',
+      result: results[counter].correct_answer,
+    };
+    const incorrectAnswers = results[counter].incorrect_answers.map((e, index) => ({
+      correct: `wrong-answer-${index}`,
+      result: e,
+    }));
+    const answers = [correctAnswer, ...incorrectAnswers];
+    this.shuffle(answers);
+    this.setState({ answers });
+  }
+
+  decodeHTMLEntities(text) {
+    const textArea = document.createElement('textarea');
+    textArea.innerHTML = text;
+    return textArea.value;
+  }
+
+  firstClick() {
+    this.setState({
+      nextButton: 'block',
+    });
+  }
+
+  async nextQuestion() {
+    const { counter } = this.state;
+    await this.setState({
+      counter: counter + 1,
+      nextButton: 'none',
+    });
+    this.getAnswers();
+  }
+
+  shuffle(array) {
+    let currentIndex = array.length;
+    let temporaryValue;
+    let randomIndex;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
   }
 
   render() {
     const { results } = this.props;
-    // console.log(results);
-    console.log(results !== '' ? results[0].category : 0);
+    const { nextButton, counter, answers } = this.state;
+    console.log(results !== '' ? results[counter].category : 0);
     return (
       <div>
         <Header />
         <div className="container-game">
           <div>
+            CATEGORIA:
             <div data-testid="question-category">
-              { results !== '' ? results[0].category : 0}
+              { results !== '' ? this.decodeHTMLEntities(results[counter].category) : ''}
             </div>
+            <br />
+            PERGUNTA:
             <div data-testid="question-text">
-              { results !== '' ? results[0].question : 0}
+              { results !== '' ? this.decodeHTMLEntities(results[counter].question) : ''}
             </div>
           </div>
-          <div>
-            <button
-              type="button"
-              className="btn"
-              data-testid="correct-answer"
-            >
-              { results !== '' ? results[0].correct_answer : 0}
-            </button>
-            { results !== '' ? results[0].incorrect_answers.map((answer, index) => (
+          <div className="buttons">
+            { answers !== '' ? answers.map((answer, index) => (
               <button
                 key={ index }
                 type="button"
                 className="btn"
-                data-testid={ `wrong-answer-${index}` }
+                data-testid={ answer.correct }
+                onClick={ this.firstClick }
               >
-                {answer}
+                { this.decodeHTMLEntities(answer.result) }
               </button>
-            ))
-              : 0}
+            )) : '' }
+          </div>
+          <div className="nextbutton">
+            <button
+              type="button"
+              className="btn next"
+              data-testid="btn-next"
+              style={ { display: nextButton } }
+              onClick={ this.nextQuestion }
+            >
+              Próxima
+            </button>
+
           </div>
         </div>
       </div>
+
     );
   }
 }
