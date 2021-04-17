@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import storeNewSettings from '../actions/settings';
+import style from './Settings.module.css';
 
 const DIFFICULTY_OPTIONS = [
   {
@@ -95,6 +97,7 @@ class Settings extends React.Component {
     const { settings: { [setting]: value } } = this.state;
     return (
       <select
+        className={ style.select }
         name={ setting }
         key={ setting }
         value={ value }
@@ -113,6 +116,7 @@ class Settings extends React.Component {
     return (
       <>
         <input
+          className={ style.number }
           type="number"
           name="amount"
           value={ settings.amount }
@@ -123,12 +127,23 @@ class Settings extends React.Component {
     );
   }
 
+  renderBackHome() {
+    return (
+      <Link className={ style.link } to="/">
+        <button className={ style.button } type="button" data-testid="btn-play-again">
+          Tela Login
+        </button>
+      </Link>
+    );
+  }
+
   render() {
     const { isFetching } = this.state;
     return (
-      <div>
-        <h1 data-testid="settings-title">Settings</h1>
+      <div className={ style.div }>
+        <h1 className={ style.title } data-testid="settings-title">Settings</h1>
         { !isFetching && this.renderSettings() }
+        { this.renderBackHome() }
       </div>
     );
   }

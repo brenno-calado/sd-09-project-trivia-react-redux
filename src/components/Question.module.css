@@ -106,6 +106,16 @@
   width: 100%;
 }
 
+.next:enabled:hover {
+  background-image: linear-gradient(to bottom, rgb(28, 99, 164) 0%, rgb(40, 98, 99) 100%);
+  box-shadow: black 5px 5px 15px 3px;
+}
+
+.next:enabled:active {
+  background-image: linear-gradient(to left, rgba(28, 98, 94) 0%, rgb(40, 98, 99) 100%);
+  box-shadow: black 3px 3px 15px 1px;
+}
+
 @keyframes flashCorrect {
 
   from {
