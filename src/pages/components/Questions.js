@@ -6,8 +6,6 @@ import * as Api from '../../service/Api';
 import '../../styles/components/Questions.css';
 import { stopTime, addPlayer, restartTimer } from '../../redux/actions/index';
 
-const NUMBER = -1;
-
 class Questions extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +20,7 @@ class Questions extends React.Component {
       disableAlternatives: false,
       nextQuestion: false,
       redirectToFeedback: false,
+      isFetching: true,
     };
     this.getQuestions = this.getQuestions.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -31,6 +30,7 @@ class Questions extends React.Component {
     this.enableNextButton = this.enableNextButton.bind(this);
     this.renderButton = this.renderButton.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
+    this.renderQuestion = this.renderQuestion.bind(this);
   }
 
   componentDidMount() {
@@ -58,6 +58,7 @@ class Questions extends React.Component {
         ...questions[questionIndex].incorrect_answers,
       ].sort(),
       correctAnswer: questions[questionIndex].correct_answer,
+      isFetching: false,
     });
   }
 
@@ -138,6 +139,7 @@ class Questions extends React.Component {
           isSelected: false,
           disableAlternatives: false,
           nextQuestion: false,
+          isFetching: true,
         }
       ), () => this.getQuestions());
       dispatchRestartTimer();
@@ -160,7 +162,7 @@ class Questions extends React.Component {
     );
   }
 
-  render() {
+  renderQuestion() {
     const {
       category,
       question,
@@ -168,12 +170,11 @@ class Questions extends React.Component {
       correctAnswer,
       isSelected,
       disableAlternatives,
-      nextQuestion,
-      redirectToFeedback,
     } = this.state;
+    const NUMBER = -1;
     let indexQuestion = NUMBER;
     return (
-      <div>
+      <>
         <h4 data-testid="question-category">{ category }</h4>
         <p data-testid="question-text">{ question }</p>
         {alternatives.map((alternative, index) => {
@@ -205,8 +206,20 @@ class Questions extends React.Component {
               { alternative }
             </button>);
         })}
-        { nextQuestion && this.renderButton() }
-        { (redirectToFeedback) && <Redirect to="/feedback" /> }
+      </>
+    );
+  }
+
+  render() {
+    const { nextQuestion, redirectToFeedback, isFetching } = this.state;
+    return (
+      <div>
+        { !(isFetching) ? (
+          <>
+            { this.renderQuestion() }
+            { nextQuestion && this.renderButton() }
+            { (redirectToFeedback) && <Redirect to="/feedback" /> }
+          </>) : (<p>Loading</p>) }
       </div>
     );
   }
