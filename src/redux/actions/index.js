@@ -5,6 +5,7 @@ export const GET_SECONDS = 'GET_SECONDS';
 export const ADD_PLAYER = 'ADD_PLAYER';
 export const RESTART_TIMER = 'RESTART_TIMER';
 export const REMOVE_RESTART_TIMER = 'REMOVE_RESTART_TIMER';
+export const GET_USER_IMAGE = 'GET_USER_IMAGE';
 
 export const submitUser = (name, email, token) => ({
   type: SUBMIT_USER,
@@ -37,4 +38,9 @@ export const restartTimer = () => ({
 
 export const removeRestartTimer = () => ({
   type: REMOVE_RESTART_TIMER,
+});
+
+export const getUserImage = (url) => ({
+  type: GET_USER_IMAGE,
+  url,
 });

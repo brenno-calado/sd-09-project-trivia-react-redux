@@ -8,6 +8,11 @@ class Feedback extends Component {
   constructor(props) {
     super(props);
     this.menssageFeedBack = this.menssageFeedBack.bind(this);
+    this.updateRanking = this.updateRanking.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateRanking();
   }
 
   menssageFeedBack() {
@@ -19,18 +24,33 @@ class Feedback extends Component {
     return (<p data-testid="feedback-text">Mandou bem!</p>);
   }
 
+  updateRanking() {
+    const { name, score, userImageId } = this.props;
+    if (name.length !== 0) {
+      const userObj = {
+        name,
+        score,
+        picture: `https://www.gravatar.com/avatar/${userImageId}`,
+      };
+      const ranking = localStorage.getItem('ranking');
+      if (ranking === null) {
+        localStorage.setItem('ranking', JSON.stringify([userObj]));
+      } else {
+        const recoveredRanking = JSON.parse(ranking);
+        localStorage.setItem('ranking', JSON.stringify([...recoveredRanking, userObj]));
+      }
+    }
+  }
+
   render() {
     const { score, assertions } = this.props;
-    console.log(typeof (assertions));
     return (
       <div>
         <Header />
         {this.menssageFeedBack()}
         <p>
           Pontuação final:
-          <span
-            data-testid="feedback-total-score"
-          >
+          <span data-testid="feedback-total-score">
             {score}
           </span>
         </p>
@@ -68,6 +88,7 @@ const mapStateToProps = (state) => ({
   email: state.loginUser.email,
   assertions: state.player.assertions,
   score: state.player.score,
+  userImageId: state.player.userImageId,
 });
 
 Feedback.propTypes = {
@@ -75,6 +96,7 @@ Feedback.propTypes = {
   name: PropTypes.string,
   assertions: PropTypes.number,
   score: PropTypes.number,
+  useImageId: PropTypes.string,
 }.isRequired;
 
 export default connect(mapStateToProps)(Feedback);
