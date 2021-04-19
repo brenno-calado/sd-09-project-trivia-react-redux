@@ -10,7 +10,7 @@ import FeedbackInfo from '../components/FeedbackInfo';
 class Feedback extends React.Component {
   render() {
     return (
-      <div>
+      <>
         <Header />
         <FeedbackMsg />
         <FeedbackInfo />
@@ -20,7 +20,7 @@ class Feedback extends React.Component {
         <Link to="/">
           <PlayAgainBtn />
         </Link>
-      </div>
+      </>
     );
   }
 }
