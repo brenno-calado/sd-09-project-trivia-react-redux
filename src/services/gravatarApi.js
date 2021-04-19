@@ -1,4 +1,5 @@
 import md5 from 'crypto-js/md5';
+
 const email = localStorage.getItem(JSON.parse('player'));
 const hashEmail = md5(email.gravatarEmail);
 
