@@ -4,19 +4,8 @@ import { shape, string, number } from 'prop-types';
 
 class RankingList extends Component {
   renderRankingList() {
-    const placeholder = 'https://via.placeholder.com/40';
-    /* Bloco para passar no teste */
-    const { playerData } = this.props;
-    const mockedRank = [
-      { name: 'hamjito', score: 85, picture: placeholder },
-      { name: 'murilove', score: 90, picture: placeholder },
-      { name: 'nato', score: 82, picture: placeholder },
-      { name: 'ricci', score: 87, picture: placeholder },
-      playerData,
-    ];
-    localStorage.setItem('ranking', JSON.stringify(mockedRank));
-    /* Bloco para passar no teste */
-    const ranking = JSON.parse(localStorage.getItem('ranking')) || [];
+    const ranking = JSON.parse(localStorage.getItem('ranking'));
+
     return ranking.sort(({ score: score1 }, { score: score2 }) => score2 - score1)
       .map(({ name, score, picture }, index) => (
         <li key={ name }>
