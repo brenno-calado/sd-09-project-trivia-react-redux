@@ -113,7 +113,7 @@ Você pode acessar um **protótipo** completo da interface desejada para o proje
 
   - Serão cinco dias de projeto.
 
-  - Data de entrega para avaliação final do projeto: `dd/mm/yyyy - 14:00h`.
+  - Data de entrega para avaliação final do projeto: `19/04/2021 - 14:00h`.
 
 ---
 
@@ -280,7 +280,7 @@ Esse endpoint te retornará o token que vai ser utilizado nas requisições segu
 }
 ```
 
-Paga pegar as perguntas, você deve realizar um GET request para o seguinte endpoint:
+Para pegar as perguntas, você deve realizar um GET request para o seguinte endpoint:
 
 ```
 https://opentdb.com/api.php?amount=${quantidade-de-perguntas-retornadas}&token=${seu-token-aqui}
