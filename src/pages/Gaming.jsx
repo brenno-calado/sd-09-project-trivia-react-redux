@@ -132,7 +132,6 @@ class Gaming extends React.Component {
       nextQuestionDispatch,
       playerState,
       picture,
-      setDataPlayer,
     } = this.props;
     const maxQuestionNumber = 4;
     NEW_ARRAY_ANSWERS = [];
