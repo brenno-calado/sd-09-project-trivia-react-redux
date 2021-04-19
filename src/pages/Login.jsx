@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchTrivaApi, requestUserInfo } from '../actions';
+import { fetchTrivaApi, requestUserInfo, resetScore } from '../actions';
 import SettingsButton from '../components/SettingsButton';
 import loginPanel from './loginPanel.png';
 import '../App.css';
@@ -40,9 +40,10 @@ class Login extends React.Component {
   }
 
   async fetchToken(email, name) {
-    const { fetchAPI } = this.props;
+    const { fetchAPI, resetTheScore } = this.props;
     await fetchAPI();
     this.getUserInfo(email, name);
+    resetTheScore();
   }
 
   fields(changeState, buttonSubmit) {
@@ -122,11 +123,13 @@ const mapDispatchToProps = (dispatch) => ({
   fetchAPI: () => dispatch(fetchTrivaApi()),
   requestUserInfoAction: (email, name, hash) => (
     dispatch(requestUserInfo(email, name, hash))),
+  resetTheScore: () => dispatch(resetScore()),
 });
 
 Login.propTypes = {
   fetchAPI: PropTypes.func.isRequired,
   requestUserInfoAction: PropTypes.func.isRequired,
+  resetTheScore: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Login);

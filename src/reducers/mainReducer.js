@@ -9,6 +9,11 @@ const mainReducer = (state = INITIAL_STATE, action) => {
       ...state,
       score: state.score + action.score,
     };
+  case 'RESET_SCORE':
+    return {
+      ...state,
+      score: 0,
+    };
   default:
     return state;
   }
