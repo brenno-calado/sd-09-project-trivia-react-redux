@@ -1,10 +1,39 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { func, string } from 'prop-types';
 import Header from '../components/Header';
+import { fetchGameData } from '../actions/index';
+import Questions from '../components/Questions';
 
-export default class Game extends Component {
+import './Game.css';
+
+class Game extends Component {
+  componentDidMount() {
+    const { getGameData, token } = this.props;
+    getGameData(token);
+  }
+
   render() {
     return (
-      <Header />
+      <>
+        <Header />
+        <Questions />
+      </>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  token: state.loginReducer.token,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getGameData: (token) => dispatch(fetchGameData(token)),
+});
+
+Game.propTypes = {
+  getGameData: func,
+  token: string,
+}.isRequired;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

@@ -8,7 +8,7 @@ class Logotipo extends React.Component {
         <header className="App-header">
           <img src={ logo } className="App-logo" alt="logo" />
           <p>
-            SUA VEZ
+            Loading...
           </p>
         </header>
       </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { func, shape } from 'prop-types';
 import { handleLogin as loginAction } from '../actions';
+import SettingsButton from '../components/SettingsButton';
 
 class Login extends React.Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class Login extends React.Component {
     const { name, email, loginError, error } = this.state;
     return (
       <div>
+        <SettingsButton />
         <h1>Login</h1>
         {
           loginError && <p>{ error }</p>

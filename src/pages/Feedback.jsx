@@ -1,13 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import ShowRankingBtn from '../components/ShowRankingBtn';
 import Header from '../components/Header';
-import Ranking from '../components/Ranking';
+import PlayAgainBtn from '../components/PlayAgainBtn';
+import FeedbackMsg from '../components/FeedbackMsg';
+import FeedbackInfo from '../components/FeedbackInfo';
 
 class Feedback extends React.Component {
   render() {
     return (
       <>
         <Header />
-        <Ranking />
+        <FeedbackMsg />
+        <FeedbackInfo />
+        <Link to="/ranking">
+          <ShowRankingBtn />
+        </Link>
+        <Link to="/">
+          <PlayAgainBtn />
+        </Link>
       </>
     );
   }
