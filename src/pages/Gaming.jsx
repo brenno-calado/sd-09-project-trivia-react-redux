@@ -156,7 +156,6 @@ class Gaming extends React.Component {
         localStorage.setItem('ranking', JSON.stringify([...ranking, rankingObject]));
       }
 
-      setDataPlayer(playerState, picture);
       this.setState({ redirect: true });
     }
   }
