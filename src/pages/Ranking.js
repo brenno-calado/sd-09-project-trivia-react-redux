@@ -21,8 +21,8 @@ class Ranking extends Component {
     const NUMBER_ZERO = 0;
     if (ranking !== null) {
       const orderedRanking = ranking.sort((objA, objB) => {
-        if (objA.score > objB.score) return NUMBER_ONE_NEGATIVE;
-        if (objA.score < objB.score) return NUMBER_ONE;
+        if ((objA.score) > (objB.score)) return NUMBER_ONE_NEGATIVE;
+        if ((objA.score) < (objB.score)) return NUMBER_ONE;
         return NUMBER_ZERO;
       });
       this.setState({

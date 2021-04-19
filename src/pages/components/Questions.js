@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import * as Api from '../../service/Api';
 import '../../styles/components/Questions.css';
-import { stopTime, addPlayer, restartTimer } from '../../redux/actions/index';
+import { stopTime, addPlayer, restartTimer, startTimer } from '../../redux/actions/index';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -34,7 +34,9 @@ class Questions extends React.Component {
   }
 
   componentDidMount() {
+    const { stopTime: isTimeStoped, dispatchStopTime } = this.props;
     this.getQuestions();
+    if (isTimeStoped) dispatchStopTime();
   }
 
   componentDidUpdate(prevProps) {
@@ -47,7 +49,7 @@ class Questions extends React.Component {
 
   async getQuestions() {
     const { questionIndex } = this.state;
-    const { token } = this.props;
+    const { token, dispatchStartTimer } = this.props;
     const questions = await Api.fetchQuestions(token);
     this.setState({
       category: questions[questionIndex].category,
@@ -60,35 +62,29 @@ class Questions extends React.Component {
       correctAnswer: questions[questionIndex].correct_answer,
       isFetching: false,
     });
+    dispatchStartTimer();
   }
 
   getDifficulty() {
     const { difficulty } = this.state;
-    const number = 0;
-    let difficultNumber = number;
+    let difficultNumber = 0;
     const NUMBER_ONE = 1;
     const NUMBER_TWO = 2;
     const NUMBER_THREE = 3;
-    if (difficulty === 'easy') {
-      difficultNumber = NUMBER_ONE;
-    } else if (difficulty === 'medium') {
-      difficultNumber = NUMBER_TWO;
-    } else if (difficulty === 'hard') {
-      difficultNumber = NUMBER_THREE;
-    }
+    if (difficulty === 'easy') difficultNumber = NUMBER_ONE;
+    else if (difficulty === 'medium') difficultNumber = NUMBER_TWO;
+    else if (difficulty === 'hard') difficultNumber = NUMBER_THREE;
     return difficultNumber;
   }
 
   enableNextButton() {
-    this.setState({
-      nextQuestion: true,
-    });
+    this.setState({ nextQuestion: true });
   }
 
   UpdateScore() {
     const { seconds, dispatchPlayer, player: playerObj } = this.props;
-    const NUMBER_TEN = 10;
     const { score, assertions } = playerObj;
+    const NUMBER_TEN = 10;
     let totalScore = score;
     let totalAssertions = assertions;
     const difficulty = this.getDifficulty();
@@ -108,17 +104,9 @@ class Questions extends React.Component {
     const { dispatchStopTime } = this.props;
     if ((value === 'correct-answer') && (questionIndex < QUESTIONS_LIMIT)) {
       this.UpdateScore();
-      this.setState((state) => (
-        {
-          questionIndex: state.questionIndex + 1,
-        }
-      ));
+      this.setState((state) => ({ questionIndex: state.questionIndex + 1 }));
     } else if (questionIndex < QUESTIONS_LIMIT) {
-      this.setState((state) => (
-        {
-          questionIndex: state.questionIndex + 1,
-        }
-      ));
+      this.setState((state) => ({ questionIndex: state.questionIndex + 1 }));
     }
     this.setState({ isSelected: true });
     dispatchStopTime();
@@ -127,23 +115,20 @@ class Questions extends React.Component {
 
   nextQuestion() {
     const QUESTIONS_LIMIT = 5;
-    const { dispatchRestartTimer } = this.props;
+    const { dispatchRestartTimer, dispatchStartTimer } = this.props;
     const { questionIndex } = this.state;
     if (questionIndex === QUESTIONS_LIMIT) {
-      this.setState({
-        redirectToFeedback: true,
-      });
+      this.setState({ redirectToFeedback: true });
     } else {
-      this.setState(() => (
-        {
-          isSelected: false,
-          disableAlternatives: false,
-          nextQuestion: false,
-          isFetching: true,
-        }
-      ), () => this.getQuestions());
+      this.setState(() => ({
+        isSelected: false,
+        disableAlternatives: false,
+        nextQuestion: false,
+        isFetching: true,
+      }), () => this.getQuestions());
       dispatchRestartTimer();
     }
+    dispatchStartTimer();
   }
 
   disableAlternatives() {
@@ -230,12 +215,15 @@ const mapStateToProps = (state) => ({
   timesUp: state.timer.timesUp,
   seconds: state.timer.seconds,
   player: state.player,
+  startTimer: state.timer.startTimer,
+  stopTime: state.timer.stopTime,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchStopTime: () => dispatch(stopTime()),
   dispatchPlayer: (object) => dispatch(addPlayer(object)),
   dispatchRestartTimer: () => dispatch(restartTimer()),
+  dispatchStartTimer: () => dispatch(startTimer()),
 });
 
 Questions.propTypes = {
