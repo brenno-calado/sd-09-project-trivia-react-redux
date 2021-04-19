@@ -15,7 +15,10 @@ class Timer extends Component {
   }
 
   componentDidMount() {
-    this.gameTimer();
+    const { startTimer } = this.props;
+    if (startTimer) {
+      this.gameTimer();
+    }
   }
 
   componentDidUpdate() {
@@ -28,6 +31,7 @@ class Timer extends Component {
     } else if (((seconds === 0) || (stopTime))) {
       clearTimeout(timer);
       dispatchTimesUp();
+      console.log('test');
     }
   }
 
@@ -66,12 +70,15 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   stopTime: state.timer.stopTime,
   restartTimer: state.timer.restartTimer,
+  startTimer: state.timer.startTimer,
 });
+
 Timer.propTypes = {
   dispatchTimesUp: PropTypes.func,
   dispatchSeconds: PropTypes.func,
   stopTime: PropTypes.bool,
   restartTimer: PropTypes.bool,
+  startTimer: PropTypes.bool,
 }.isRequired;
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);

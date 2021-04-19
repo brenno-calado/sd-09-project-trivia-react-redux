@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
+import { getUserImage } from '../../redux/actions';
 
 class Header extends React.Component {
   constructor(props) {
@@ -19,7 +20,9 @@ class Header extends React.Component {
   }
 
   convertEmail(url) {
+    const { dispatchImageUrl } = this.props;
     this.setState({ gravatarUrl: url });
+    dispatchImageUrl(url);
   }
 
   render() {
@@ -46,8 +49,13 @@ const mapStateToProps = (state) => ({
   player: state.player,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  dispatchImageUrl: (url) => dispatch(getUserImage(url)),
+});
+
 Header.propTypes = {
   name: PropTypes.string,
+  dispatchImageUrl: PropTypes.func,
 }.isRequired;
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
