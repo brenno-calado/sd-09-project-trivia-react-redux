@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import '../styles/FeedBack.css';
 
 class FeedBack extends React.Component {
   constructor(props) {
@@ -85,8 +86,8 @@ class FeedBack extends React.Component {
   render() {
     return (
       <div>
-        <h1 data-testid="feedback-text">FeedBack</h1>
         <Header />
+        <h1 data-testid="feedback-text">FeedBack</h1>
         { this.verifyAssertions() }
         { this.scoreBoardGenerator() }
         { this.playAgain() }

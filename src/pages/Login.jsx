@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import fetchToken from '../services/tokenGenerator';
 import { loginEmail, loginName, questionsThunk } from '../actions';
+import TriviaPic from '../trivia.png';
 import '../styles/Login.css';
 
 class Login extends React.Component {
@@ -71,7 +72,7 @@ class Login extends React.Component {
   formGenerator() {
     const { isDisabled, email, name } = this.state;
     return (
-      <div className="login-inputs-container">
+      <div className="form-container">
         <label htmlFor="input-player-name">
           Nome:
           <input
@@ -94,7 +95,7 @@ class Login extends React.Component {
             onChange={ this.handleChange }
           />
         </label>
-        <div>
+        <div className="buttons-container">
           <button
             type="button"
             data-testid="btn-play"
@@ -120,7 +121,8 @@ class Login extends React.Component {
     const { redirect } = this.state;
     if (redirect) return <Redirect to="/play" />;
     return (
-      <div>
+      <div className="login-inputs-container">
+        <img src={ TriviaPic } alt="Trivia Pic" />
         { this.formGenerator() }
       </div>
     );

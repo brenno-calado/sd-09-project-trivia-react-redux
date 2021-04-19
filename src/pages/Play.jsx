@@ -77,13 +77,15 @@ class Play extends React.Component {
 
   nextQuestionButtonGenerator() {
     return (
-      <button
-        type="button"
-        data-testid="btn-next"
-        onClick={ this.handleNextQuestion }
-      >
-        Próxima
-      </button>
+      <section className="next-button">
+        <button
+          type="button"
+          data-testid="btn-next"
+          onClick={ this.handleNextQuestion }
+        >
+          Próxima
+        </button>
+      </section>
     );
   }
 
@@ -126,7 +128,7 @@ class Play extends React.Component {
       this.setState({ randomized: randomizedAnswers });
     }
     return (
-      <section className="questions">
+      <section className="question-container">
         <div>
           <p data-testid="question-category">{ category }</p>
           <p data-testid="question-text">{ question }</p>

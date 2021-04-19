@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { timer, isDisabled } from '../actions';
+import './Timer.css';
 
 class Timer extends React.Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class Timer extends React.Component {
   render() {
     const { counter } = this.props;
     return (
-      <section>
+      <section className="timer-container">
         { `Tempo: ${counter}` }
       </section>
     );

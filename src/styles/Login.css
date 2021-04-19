@@ -4,21 +4,54 @@ body {
   padding: 0;
 }
 
-.login-inputs-container {
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.form-container {
   align-items: center;
-  background-color: lightskyblue;
-  border: 1px solid black;
+  border: 3px solid black;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  height: 50vh;
   justify-content: center;
-  padding: 20px;
-  width: 50%;
+  padding: 20px 0;
+  width: 30%;
+}
+
+.login-inputs-container {
+  align-items: center;
+  background-color: lightskyblue;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.login-inputs-container img {
+  height: 40vh;
+  margin-bottom: 80px;
+  width: 60%;
 }
 
 .login-inputs-container label {
   align-items: center;
+  display: flex;
+  justify-content: center;
   margin: 10px 0;
-  width: 80%;
+  width: 100%;
+}
+
+.login-inputs-container button {
+  border-radius: 10px;
+  margin: 10px 0;
+  width: 120px;
+}
+
+.login-inputs-container input {
+  border-radius: 10px;
+  width: 50%;
 }

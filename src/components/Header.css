@@ -1,0 +1,20 @@
+.header {
+  align-items: center;
+  background-color: lightskyblue;
+  display: flex;
+  height: 25vh;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header img {
+  height: 80%;
+}
+
+.header-infos-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+  width: 20%;
+}
