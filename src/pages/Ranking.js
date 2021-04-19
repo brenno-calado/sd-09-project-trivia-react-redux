@@ -45,7 +45,7 @@ class Ranking extends Component {
                 <span data-testid={ `player-name-${index}` }>{ player.name }</span>
               </p>
               <p>
-                Pontução:
+                Pontuação:
                 <span data-testid={ `player-score-${index}` }>{ player.score }</span>
               </p>
             </li>
