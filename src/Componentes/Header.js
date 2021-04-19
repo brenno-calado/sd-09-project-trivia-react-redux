@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
 import HomeButton from './HomeButton';
-
+// comentario
 class Header extends React.Component {
   makeGravatarUrl() {
     const { email } = this.props;
