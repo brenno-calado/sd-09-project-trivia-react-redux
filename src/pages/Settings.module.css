@@ -1,0 +1,60 @@
+.div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.number {
+  border-radius: 10px;
+  box-shadow: black 1px 1px 8px 2px;
+  margin: 10px auto;
+  padding: 5px;
+  text-align: center;
+}
+
+.select {
+  border-radius: 5px;
+  box-shadow: black 1px 1px 8px 2px;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+}
+
+.number:focus, .select:focus {
+  box-shadow: 2px 2px 7px 1px #1c6ea4;
+}
+
+.title {
+  color: white;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.button {
+  background-image: linear-gradient(to right, rgb(28, 99, 164) 0%, rgb(20, 78, 117) 100%);
+  border: 2px outset rgb(28, 110, 164);
+  border-radius: 10px;
+  box-shadow: black 5px 5px 15px 5px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  line-height: 16px;
+  margin: 20px auto;
+  max-width: 320px;
+  padding: 6px;
+  width: 100%;
+}
+
+.button:enabled:hover {
+  background-image: linear-gradient(to bottom, rgb(28, 99, 164) 0%, rgb(40, 98, 99) 100%);
+  box-shadow: black 5px 5px 15px 3px;
+}
+
+.button:enabled:active {
+  background-image: linear-gradient(to left, rgba(28, 98, 94) 0%, rgb(40, 98, 99) 100%);
+  box-shadow: black 3px 3px 15px 1px;
+
+}

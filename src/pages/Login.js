@@ -5,6 +5,7 @@ import addUserInfo from '../actions';
 import ButtonSettings from '../components/ButtonSettings';
 import fetchTrivia from '../actions/trivia';
 import { userStorage } from '../services/storage';
+import style from './Login.module.css';
 
 class Login extends React.Component {
   constructor() {
@@ -41,30 +42,37 @@ class Login extends React.Component {
     const disableButton = name === '' || email === '';
 
     return (
-      <section>
-        <input
-          name="name"
-          data-testid="input-player-name"
-          type="text"
-          onChange={ this.getValue }
-          placeholder="Nome"
-        />
-        <input
-          name="email"
-          data-testid="input-gravatar-email"
-          type="email"
-          onChange={ this.getValue }
-          placeholder="E-mail"
-        />
-        <button
-          onClick={ this.proceedToGame }
-          data-testid="btn-play"
-          type="button"
-          disabled={ disableButton }
-        >
-          Jogar
-        </button>
-        <ButtonSettings />
+      <section className={ style.section }>
+        <div className={ style.divInput }>
+          <input
+            className={ style.inputName }
+            name="name"
+            data-testid="input-player-name"
+            type="text"
+            onChange={ this.getValue }
+            placeholder="Nome"
+          />
+          <input
+            className={ style.inputEmail }
+            name="email"
+            data-testid="input-gravatar-email"
+            type="email"
+            onChange={ this.getValue }
+            placeholder="E-mail"
+          />
+        </div>
+        <div className={ style.divBtn }>
+          <button
+            className={ style.button }
+            onClick={ this.proceedToGame }
+            data-testid="btn-play"
+            type="button"
+            disabled={ disableButton }
+          >
+            Jogar
+          </button>
+          <ButtonSettings />
+        </div>
       </section>
     );
   }

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import scoreThisCorrectAnswer from '../actions/score';
+import Timer from './Timer';
+import style from './Question.module.css';
 
 const INITIAL_STATE = {
   isAnswered: false,
@@ -57,12 +59,9 @@ class Question extends Component {
     const { timer, isAnswered } = this.state;
     const TIME_INTERVAL = 1000;
     const shouldCountDown = timer > 0 && !isAnswered;
-    setTimeout(
-      () => {
-        if (shouldCountDown) this.setState({ timer: timer - 1 });
-      },
-      TIME_INTERVAL,
-    );
+    setTimeout(() => {
+      if (shouldCountDown) this.setState({ timer: timer - 1 });
+    }, TIME_INTERVAL);
   }
 
   answerQuestion({ target: { textContent: answerButton } }) {
@@ -73,21 +72,22 @@ class Question extends Component {
   renderAnswers() {
     const { isAnswered, answersOrder, timer } = this.state;
     const timeout = timer === 0;
-    const { question: {
-      correct_answer: correctAnswer,
-      incorrect_answers: incorrectAnswers,
-    } } = this.props;
+    const {
+      question: {
+        correct_answer: correctAnswer,
+        incorrect_answers: incorrectAnswers,
+      },
+    } = this.props;
 
     const correctAnswersButtons = (
       <button
+        className={ style.button }
         key="correct"
         type="button"
         data-testid="correct-answer"
-        { ...isAnswered && { style: { border: '3px solid rgb(6, 240, 15)' } } }
-        onClick={ isAnswered
-          ? () => null
-          : this.answerQuestion }
-        disabled={ timeout }
+        { ...(isAnswered && { className: style.correct }) }
+        onClick={ isAnswered ? () => null : this.answerQuestion }
+        disabled={ timeout || isAnswered }
       >
         {correctAnswer}
       </button>
@@ -95,14 +95,13 @@ class Question extends Component {
     const incorrectAnswersButtons = incorrectAnswers.map(
       (incorrectAnswer, index) => (
         <button
+          className={ style.button }
           type="button"
           key={ index + 1 }
           data-testid={ `wrong-answer-${index}` }
-          { ...isAnswered && { style: { border: '3px solid rgb(255, 0, 0)' } } }
-          onClick={ isAnswered
-            ? () => null
-            : this.answerQuestion }
-          disabled={ timeout }
+          { ...(isAnswered && { className: style.incorrect }) }
+          onClick={ isAnswered ? () => null : this.answerQuestion }
+          disabled={ timeout || isAnswered }
         >
           {incorrectAnswer}
         </button>
@@ -116,6 +115,7 @@ class Question extends Component {
     const { goToNextQuestion } = this.props;
     return (
       <button
+        className={ style.next }
         type="button"
         data-testid="btn-next"
         onClick={ () => {
@@ -123,26 +123,31 @@ class Question extends Component {
           goToNextQuestion();
         } }
       >
-        Next
+        Next »
       </button>
     );
   }
 
   render() {
-    const { question: {
-      category,
-      question,
-    } } = this.props;
+    const {
+      question: { category, question },
+    } = this.props;
     const { timer, isAnswered } = this.state;
 
     return (
-      <div>
-        <h2>{ timer }</h2>
-        <p data-testid="question-category">{ category }</p>
-        <p data-testid="question-text">{ question }</p>
-        { this.renderAnswers() }
-        { isAnswered && this.renderNextButton() }
-      </div>
+      <>
+        <Timer timer={ timer } />
+        <div className={ style.div }>
+          <p className={ style.category } data-testid="question-category">
+            {category}
+          </p>
+          <p className={ style.text } data-testid="question-text">
+            {question}
+          </p>
+          {this.renderAnswers()}
+          {(isAnswered || timer === 0) && this.renderNextButton()}
+        </div>
+      </>
     );
   }
 }

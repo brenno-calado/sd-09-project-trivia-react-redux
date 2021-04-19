@@ -1,0 +1,82 @@
+.title {
+  background-image: url('../img/crown.png');
+  background-position: 5px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  color: yellow;
+  display: inline-block;
+  filter: invert(48%) sepia(13%) saturate(4500%);
+  font-size: 3em;
+  margin: 20px;
+  padding-left: 40px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.button {
+  background-image: linear-gradient(to right, rgb(28, 99, 164) 0%, rgb(20, 78, 117) 100%);
+  border: 2px outset rgb(28, 110, 164);
+  border-radius: 10px;
+  box-shadow: black 5px 5px 15px 5px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  line-height: 16px;
+  margin: 20px auto;
+  max-width: 320px;
+  padding: 6px;
+  width: 100%;
+}
+
+.button:enabled:hover {
+  background-image: linear-gradient(to bottom, rgb(28, 99, 164) 0%, rgb(40, 98, 99) 100%);
+  box-shadow: black 5px 5px 15px 3px;
+}
+
+.button:enabled:active {
+  background-image: linear-gradient(to left, rgba(28, 98, 94) 0%, rgb(40, 98, 99) 100%);
+  box-shadow: black 3px 3px 15px 1px;
+}
+
+.list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  list-style: none;
+  margin: auto;
+  max-width: 800px;
+  padding-left: 0;
+  width: 100%;
+}
+
+.item {
+  align-items: center;
+  background-color: #4d4d4d;
+  border: 4px outset #4d4d4d;
+  border-radius: 10px;
+  display: flex;
+  flex-basis: 300px;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  margin: 5px 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+.img {
+  border-radius: 50%;
+}
+
+.name {
+  color: white;
+  display: inline-block;
+  width: 50%;
+}
+
+.score {
+  color: yellow;
+  font-weight: 900;
+}

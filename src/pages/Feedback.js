@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import style from './Feedback.module.css';
 
 class Feedback extends React.Component {
   constructor(props) {
@@ -15,30 +16,36 @@ class Feedback extends React.Component {
     if (!localStorage.getItem('ranking')) {
       localStorage.setItem('ranking', JSON.stringify([dataObj]));
     } else {
-      localStorage.setItem('ranking', JSON.stringify(
-        [...JSON.parse(localStorage.getItem('ranking')), dataObj],
-      ));
+      localStorage.setItem(
+        'ranking',
+        JSON.stringify([
+          ...JSON.parse(localStorage.getItem('ranking')),
+          dataObj,
+        ]),
+      );
     }
   }
 
   renderResultsInfo() {
     const state = JSON.parse(localStorage.getItem('state'));
-    const { player: { score, assertions } } = state;
+    const {
+      player: { score, assertions },
+    } = state;
     const minAssertions = 3;
     return (
-      <section>
-        <h2 data-testid="feedback-text">
+      <section className={ style.section }>
+        <h2 className={ style.feedback } data-testid="feedback-text">
           {assertions < minAssertions ? 'Podia ser melhor...' : 'Mandou bem!'}
         </h2>
         <div>
           Pontuação total:
-          <p data-testid="feedback-total-score">
+          <p className={ style.score } data-testid="feedback-total-score">
             {score}
           </p>
         </div>
         <div>
           Número de acertos:
-          <p data-testid="feedback-total-question">
+          <p className={ style.assertions } data-testid="feedback-total-question">
             {assertions}
           </p>
         </div>
@@ -49,8 +56,8 @@ class Feedback extends React.Component {
 
   renderButtonReplay() {
     return (
-      <Link to="/">
-        <button type="button" data-testid="btn-play-again">
+      <Link className={ style.link } to="/">
+        <button className={ style.button } type="button" data-testid="btn-play-again">
           Jogar novamente
         </button>
       </Link>
@@ -59,8 +66,8 @@ class Feedback extends React.Component {
 
   renderButtonRanking() {
     return (
-      <Link to="/ranking">
-        <button type="button" data-testid="btn-ranking">
+      <Link className={ style.link } to="/ranking">
+        <button className={ style.button } type="button" data-testid="btn-ranking">
           Ver ranking
         </button>
       </Link>
@@ -69,13 +76,14 @@ class Feedback extends React.Component {
 
   render() {
     return (
-      <main>
+      <>
         <Header />
-        {this.renderResultsInfo()}
-        {this.renderButtonReplay()}
-        {this.renderButtonRanking()}
-
-      </main>
+        <main>
+          {this.renderResultsInfo()}
+          {this.renderButtonReplay()}
+          {this.renderButtonRanking()}
+        </main>
+      </>
     );
   }
 }
