@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Questions from './components/Questions';
 import Timer from './components/Timer';
+import '../styles/pages/Game.css';
 
 class Game extends Component {
   render() {
     return (
-      <div>
+      <div className="game-container">
         <Header />
-        <Timer />
-        <Questions />
+        <main className="game-main-page">
+          <Timer />
+          <Questions />
+        </main>
       </div>
     );
   }

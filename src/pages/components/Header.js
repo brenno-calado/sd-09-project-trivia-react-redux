@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import { getUserImage } from '../../redux/actions';
+import '../../styles/components/Header.css';
 
 class Header extends React.Component {
   constructor(props) {
@@ -30,15 +31,23 @@ class Header extends React.Component {
     const { score } = player;
     const { gravatarUrl } = this.state;
     return (
-      <div>
+      <header className="header-container">
+        <div>
+          <p>
+            <span className="text-label">Nome: </span>
+            <span data-testid="header-player-name">{ name }</span>
+          </p>
+          <p>
+            <span className="text-label">Score: </span>
+            <span data-testid="header-score">{ score }</span>
+          </p>
+        </div>
         <img
           data-testid="header-profile-picture"
           src={ `https://www.gravatar.com/avatar/${gravatarUrl}` }
           alt="gravatar"
         />
-        <p data-testid="header-player-name">{ name }</p>
-        <p data-testid="header-score">{ score }</p>
-      </div>
+      </header>
     );
   }
 }

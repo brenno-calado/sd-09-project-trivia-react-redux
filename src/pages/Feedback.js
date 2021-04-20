@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from './components/Header';
+import '../styles/pages/Feedback.css';
 
 class Feedback extends Component {
   constructor(props) {
@@ -19,9 +20,25 @@ class Feedback extends Component {
     const numberThree = 3;
     const { assertions } = this.props;
     if (assertions < numberThree) {
-      return (<p data-testid="feedback-text">Podia ser melhor...</p>);
+      return (
+        <>
+          <img
+            src="https://i.giphy.com/media/BY8ORoRpnJDXeBNwxg/giphy.webp"
+            alt="frustrated"
+          />
+          <p data-testid="feedback-text">Podia ser melhor...</p>
+        </>
+      );
     }
-    return (<p data-testid="feedback-text">Mandou bem!</p>);
+    return (
+      <>
+        <img
+          src="https://i.giphy.com/media/l0amJzVHIAfl7jMDos/200.webp"
+          alt="yay"
+        />
+        <p data-testid="feedback-text">Mandou bem!</p>
+      </>
+    );
   }
 
   updateRanking() {
@@ -45,39 +62,35 @@ class Feedback extends Component {
   render() {
     const { score, assertions } = this.props;
     return (
-      <div>
+      <div className="feedback-container">
         <Header />
-        {this.menssageFeedBack()}
-        <p>
-          Pontuação final:
-          <span data-testid="feedback-total-score">
-            {score}
-          </span>
-        </p>
-        <p>
-          Total acertos:
-          <span
-            data-testid="feedback-total-question"
-          >
-            {assertions}
-          </span>
-        </p>
-        <Link to="/">
-          <button
-            type="button"
-            data-testid="btn-play-again"
-          >
-            Jogar Novamente
-          </button>
-        </Link>
-        <Link to="/ranking">
-          <button
-            type="button"
-            data-testid="btn-ranking"
-          >
-            Ver Ranking
-          </button>
-        </Link>
+        <main className="feedback-main-page">
+          { this.menssageFeedBack() }
+          <p>
+            <span className="label">Final Score: </span>
+            <span data-testid="feedback-total-score">
+              {score}
+            </span>
+          </p>
+          <p>
+            <span className="label">Right Answers: </span>
+            <span data-testid="feedback-total-question">
+              {assertions}
+            </span>
+          </p>
+          <div className="feedback-buttons-container">
+            <Link to="/">
+              <button type="button" data-testid="btn-play-again">
+                Play Again
+              </button>
+            </Link>
+            <Link to="/ranking">
+              <button type="button" data-testid="btn-ranking">
+                Ranking
+              </button>
+            </Link>
+          </div>
+        </main>
       </div>
     );
   }

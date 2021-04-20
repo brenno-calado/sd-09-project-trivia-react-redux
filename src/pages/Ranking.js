@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/pages/Ranking.css';
 
 class Ranking extends Component {
   constructor() {
@@ -34,29 +35,41 @@ class Ranking extends Component {
   render() {
     const { ranking } = this.state;
     return (
-      <div>
-        <h1 data-testid="ranking-title">Ranking</h1>
-        <ol>
-          { ranking.map((player, index) => (
-            <li key={ `${player.name}-${index}` }>
-              <img src={ player.picture } alt="player" />
-              <p>
-                Nome:
-                <span data-testid={ `player-name-${index}` }>{ player.name }</span>
-              </p>
-              <p>
-                Pontuação:
-                <span data-testid={ `player-score-${index}` }>{ player.score }</span>
-              </p>
-            </li>
-          )) }
-        </ol>
+      <div className="ranking-container">
+        <div>
+          <h1 data-testid="ranking-title">RANKING</h1>
+        </div>
+        { (ranking.length === 0) ? (
+          <p>No players found!</p>
+        ) : (
+          <ol className="ranking-list">
+            { ranking.map((player, index) => (
+              <li
+                key={ `${player.name}-${index}` }
+                className={ (index === 0) ? 'first-place' : 'competitors' }
+              >
+                <img src={ player.picture } alt="player" />
+                <p>
+                  <span className="label">{ `${index + 1}st place` }</span>
+                </p>
+                <p>
+                  <span className="label">Name: </span>
+                  <span data-testid={ `player-name-${index}` }>{ player.name }</span>
+                </p>
+                <p>
+                  <span className="label">Score: </span>
+                  <span data-testid={ `player-score-${index}` }>{ player.score }</span>
+                </p>
+              </li>
+            )) }
+          </ol>
+        ) }
         <Link to="/">
           <button
             type="button"
             data-testid="btn-go-home"
           >
-            Voltar ao inicio
+            Back to start
           </button>
         </Link>
       </div>

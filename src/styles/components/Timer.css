@@ -1,0 +1,8 @@
+.timer-container {
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+.timer-container > span {
+  margin-left: 7px;
+}

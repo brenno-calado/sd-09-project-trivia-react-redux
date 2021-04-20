@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as Api from '../service/Api';
 import { submitUser, addPlayer } from '../redux/actions';
+import '../styles/pages/Login.css';
 
 class Login extends Component {
   constructor(props) {
@@ -58,22 +59,23 @@ class Login extends Component {
   render() {
     const { name, email, isDisabled, loggedIn } = this.state;
     return (
-      <div>
-        <form>
-          <h1>Login</h1>
-          <label htmlFor="name-input">
-            Nome
+      <div className="login-container">
+        <div className="settings-button-container">
+          <Link to="/settings">
+            <button type="button" data-testid="btn-settings">Settings</button>
+          </Link>
+        </div>
+        <div className="login-form-container">
+          <h1>TRIVIA</h1>
+          <form className="login-form">
             <input
-              id="name-input"
               type="text"
               name="name"
               value={ name }
               onChange={ this.handleChange }
               data-testid="input-player-name"
+              placeholder="Name"
             />
-          </label>
-          <label htmlFor="email-input">
-            Email
             <input
               id="email-input"
               type="email"
@@ -81,21 +83,19 @@ class Login extends Component {
               value={ email }
               onChange={ this.handleChange }
               data-testid="input-gravatar-email"
+              placeholder="Email"
             />
-          </label>
-          <button
-            type="button"
-            data-testid="btn-play"
-            onClick={ this.handleClick }
-            disabled={ isDisabled }
-          >
-            Jogar
-          </button>
-        </form>
+            <button
+              type="button"
+              data-testid="btn-play"
+              onClick={ this.handleClick }
+              disabled={ isDisabled }
+            >
+              Play
+            </button>
+          </form>
+        </div>
         { (loggedIn) && <Redirect to="/game" /> }
-        <Link to="/settings">
-          <button type="button" data-testid="btn-settings">Configurações</button>
-        </Link>
       </div>
     );
   }

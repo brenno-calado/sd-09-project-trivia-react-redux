@@ -1,0 +1,22 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.game-main-page {
+  align-items: center;
+  background-color: rgb(242, 242, 242);
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+}
+
+@media only screen and ( max-height : 700px ) and ( max-width : 339px ) {
+
+  .game-main-page {
+    height: auto;
+  }
+}

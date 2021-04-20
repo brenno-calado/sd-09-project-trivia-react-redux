@@ -7,3 +7,79 @@
   border: 3px solid red;
   outline: none;
 }
+
+.question-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  animation: spin 2s linear infinite;
+  border: 10px solid rgb(194, 165, 223);
+  border-radius: 50%;
+  border-top: 10px solid rgb(71, 23, 143);
+  height: 50px;
+  margin-top: 10rem;
+  width: 50px;
+}
+
+.question-header-container {
+  background-color: rgb(71, 23, 143);
+  border-radius: 20px;
+  color: white;
+  margin: 2rem;
+  padding: 0 80px;
+  text-align: center;
+}
+
+.alternatives-container {
+  display: flex;
+  flex-flow: wrap column;
+}
+
+.alternatives-container > button {
+  background-color: rgb(194, 165, 223);
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px 40px;
+}
+
+.question-container > button {
+  align-self: center;
+  background-color: green;
+  color: white;
+  margin: 2rem 0 1rem;
+  padding: 3px;
+  width: 70px;
+}
+
+@keyframes spin {
+
+  0% { transform: rotate(0deg); }
+
+  100% { transform: rotate(360deg); }
+}
+
+@media only screen and ( max-width : 500px ) {
+
+  .question-header-container {
+    background-color: rgb(71, 23, 143);
+    border-radius: 20px;
+    color: white;
+    margin: 2rem 1rem;
+    padding: 0 40px;
+    text-align: center;
+  }
+
+  .alternatives-container {
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .alternatives-container > button {
+    width: 160px;
+  }
+}

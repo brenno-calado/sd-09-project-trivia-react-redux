@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { MdTimer } from 'react-icons/md';
 import { getSeconds, removeRestartTimer, timesUp } from '../../redux/actions';
+import '../../styles/components/Timer.css';
 
 let timer;
 class Timer extends Component {
@@ -31,7 +33,6 @@ class Timer extends Component {
     } else if (((seconds === 0) || (stopTime))) {
       clearTimeout(timer);
       dispatchTimesUp();
-      console.log('test');
     }
   }
 
@@ -54,8 +55,12 @@ class Timer extends Component {
   render() {
     const { seconds } = this.state;
     return (
-      <div>
-        <p>{seconds}</p>
+      <div className="timer-container">
+        <MdTimer />
+        <span>
+          {seconds}
+          s
+        </span>
       </div>
     );
   }

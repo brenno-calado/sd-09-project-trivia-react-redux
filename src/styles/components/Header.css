@@ -1,0 +1,17 @@
+.header-container {
+  align-items: center;
+  color: white;
+  display: flex;
+  height: 15%;
+  justify-content: space-around;
+}
+
+.header-container > img {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+}
+
+.text-label {
+  font-weight: 700;
+}

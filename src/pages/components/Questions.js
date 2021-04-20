@@ -6,6 +6,11 @@ import * as Api from '../../service/Api';
 import '../../styles/components/Questions.css';
 import { stopTime, addPlayer, restartTimer, startTimer } from '../../redux/actions/index';
 
+// HTML entity encoder/decoder
+const he = require('he');
+
+const NUMBER = -1;
+
 class Questions extends React.Component {
   constructor(props) {
     super(props);
@@ -53,13 +58,14 @@ class Questions extends React.Component {
     const questions = await Api.fetchQuestions(token);
     this.setState({
       category: questions[questionIndex].category,
-      question: questions[questionIndex].question,
+      question: he.decode(questions[questionIndex].question),
       difficulty: questions[questionIndex].difficulty,
       alternatives: [
-        questions[questionIndex].correct_answer,
-        ...questions[questionIndex].incorrect_answers,
+        he.decode(questions[questionIndex].correct_answer),
+        ...questions[questionIndex].incorrect_answers
+          .map((incorrectAnswer) => he.decode(incorrectAnswer)),
       ].sort(),
-      correctAnswer: questions[questionIndex].correct_answer,
+      correctAnswer: he.decode(questions[questionIndex].correct_answer),
       isFetching: false,
     });
     dispatchStartTimer();
@@ -109,6 +115,7 @@ class Questions extends React.Component {
       this.setState((state) => ({ questionIndex: state.questionIndex + 1 }));
     }
     this.setState({ isSelected: true });
+    this.disableAlternatives();
     dispatchStopTime();
     this.enableNextButton();
   }
@@ -142,7 +149,7 @@ class Questions extends React.Component {
         data-testid="btn-next"
         onClick={ this.nextQuestion }
       >
-        próxima
+        Next
       </button>
     );
   }
@@ -156,41 +163,44 @@ class Questions extends React.Component {
       isSelected,
       disableAlternatives,
     } = this.state;
-    const NUMBER = -1;
     let indexQuestion = NUMBER;
     return (
       <>
-        <h4 data-testid="question-category">{ category }</h4>
-        <p data-testid="question-text">{ question }</p>
-        {alternatives.map((alternative, index) => {
-          if (alternative === correctAnswer) {
+        <div className="question-header-container">
+          <h4 data-testid="question-category">{ category }</h4>
+          <p data-testid="question-text">{ question }</p>
+        </div>
+        <div className="alternatives-container">
+          { alternatives.map((alternative, index) => {
+            if (alternative === correctAnswer) {
+              return (
+                <button
+                  type="button"
+                  key={ index }
+                  className={ (isSelected) ? 'correct-answer' : undefined }
+                  data-testid="correct-answer"
+                  onClick={ this.handleClick }
+                  disabled={ disableAlternatives }
+                  value="correct-answer"
+                >
+                  { alternative }
+                </button>);
+            }
+            indexQuestion += 1;
             return (
               <button
                 type="button"
                 key={ index }
-                className={ (isSelected) ? 'correct-answer' : undefined }
-                data-testid="correct-answer"
+                className={ (isSelected) ? 'wrong-answer' : undefined }
+                data-testid={ `wrong-answer-${indexQuestion}` }
                 onClick={ this.handleClick }
                 disabled={ disableAlternatives }
-                value="correct-answer"
+                value="wrong-answer"
               >
                 { alternative }
               </button>);
-          }
-          indexQuestion += 1;
-          return (
-            <button
-              type="button"
-              key={ index }
-              className={ (isSelected) ? 'wrong-answer' : undefined }
-              data-testid={ `wrong-answer-${indexQuestion}` }
-              onClick={ this.handleClick }
-              disabled={ disableAlternatives }
-              value="wrong-answer"
-            >
-              { alternative }
-            </button>);
-        })}
+          })}
+        </div>
       </>
     );
   }
@@ -200,11 +210,11 @@ class Questions extends React.Component {
     return (
       <div>
         { !(isFetching) ? (
-          <>
+          <div className="question-container">
             { this.renderQuestion() }
             { nextQuestion && this.renderButton() }
             { (redirectToFeedback) && <Redirect to="/feedback" /> }
-          </>) : (<p>Loading</p>) }
+          </div>) : (<div className="loading" />) }
       </div>
     );
   }
