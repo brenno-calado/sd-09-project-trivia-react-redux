@@ -18,6 +18,11 @@ body {
   transition: all ease-in-out 300ms;
 }
 
+.link-btn {
+  pointer-events: none;
+  text-decoration: none;
+}
+
 .fa-cogs {
   color: white;
   font-size: 42px;
@@ -25,7 +30,7 @@ body {
 }
 
 .fa-cogs:hover {
-  color: rgb(24, 160, 139);
+  background: none;
   cursor: pointer;
 }
 

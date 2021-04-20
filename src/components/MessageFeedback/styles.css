@@ -1,0 +1,99 @@
+.container-page-feedback {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 50px auto;
+  width: 800px;
+}
+
+.container-messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-messages p {
+  color: rgb(103, 40, 175);
+  margin: 0;
+}
+
+.feedback-text {
+  font-weight: 600;
+  margin: 0;
+}
+
+.great-img {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.ohno-img {
+  margin: 0 auto;
+  width: 250px;
+}
+
+a {
+  pointer-events: none;
+}
+
+button {
+  background: rgb(24, 160, 139);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 18px;
+  pointer-events: all;
+  transition: all ease-in-out 300ms;
+  width: 180px;
+}
+
+button:hover {
+  background: rgb(34, 192, 168);
+  cursor: pointer;
+}
+
+.btn-play-again {
+  background: white;
+  color: rgb(24, 160, 139);
+  margin: 20px 0;
+}
+
+.btn-play-again:hover {
+  color: white;
+}
+
+.ranking-title {
+  color: white;
+  font-size: 36px;
+  text-align: center;
+}
+
+.container-page-ranking {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-page-ranking p {
+  font-weight: 600;
+  padding: 5px;
+}
+
+.card-player {
+  background: rgb(226, 201, 255);
+  border-radius: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px auto;
+  padding: 20px;
+  width: 300px;
+}
+
+.btn-home {
+  position: absolute;
+  top: 36px;
+  right: 50px;
+}
