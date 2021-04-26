@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { readFromStorage } from '../services/api';
 
 export default class Ranking extends React.Component {
@@ -16,36 +17,41 @@ export default class Ranking extends React.Component {
       );
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>
-              Nome:
-            </th>
-            <th>
-              Score:
-            </th>
-            <th>
-              Gravatar:
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          { scores.map(({ name, score, picture }, index) => (
-            <tr key={ index }>
-              <td data-testid={ `player-name-${index}` }>
-                { name }
-              </td>
-              <td data-testid={ `player-score-${index}` }>
-                { score }
-              </td>
-              <td>
-                <img src={ picture } alt={ `Profile ${name}` } />
-              </td>
+      <>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Nome:
+              </th>
+              <th>
+                Score:
+              </th>
+              <th>
+                Gravatar:
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            { scores.map(({ name, score, picture }, index) => (
+              <tr key={ index }>
+                <td data-testid={ `player-name-${index}` }>
+                  { name }
+                </td>
+                <td data-testid={ `player-score-${index}` }>
+                  { score }
+                </td>
+                <td>
+                  <img src={ picture } alt={ `Profile ${name}` } />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <Link to="/">
+          <button type="button" data-testid="btn-go-home">Voltar ao início</button>
+        </Link>
+      </>
     );
   }
 
