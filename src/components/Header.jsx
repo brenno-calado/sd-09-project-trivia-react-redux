@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { readFromStorage } from '../services/api';
 
 export default class Header extends React.Component {
   render() {
-    const userData = JSON.parse(localStorage.getItem('ranking'));
-    const { picture, name, score } = userData;
+    const loggedPlayer = readFromStorage('state');
+    const { name, score, picture } = loggedPlayer.player;
     return (
       <header>
         <img
