@@ -4,24 +4,10 @@ export const readFromStorage = (key) => JSON.parse(localStorage.getItem(key));
 
 export const getUserGravatar = () => {
   const state = readFromStorage('state');
-  const { name, score, gravatarEmail } = state.player;
+  const { gravatarEmail } = state.player;
   const hashGravatar = md5(gravatarEmail).toString();
-  const endpoint = `https://www.gravatar.com/avatar/${hashGravatar}`;
-  const gravatarImage = endpoint;
-  const gamePlayer = {
-    name,
-    score,
-    picture: gravatarImage,
-  };
-
-  localStorage.setItem('ranking', JSON.stringify(
-    !readFromStorage('ranking')
-      ? (
-        [gamePlayer]
-      ) : (
-        [...readFromStorage('ranking'), gamePlayer]
-      ),
-  ));
+  const gravatar = `https://www.gravatar.com/avatar/${hashGravatar}`;
+  return gravatar;
 };
 
 export const getUserToken = async () => {
@@ -31,4 +17,12 @@ export const getUserToken = async () => {
 
   localStorage.setItem('token', (getToken.token));
   return getToken;
+};
+
+export const getQuestions = async () => {
+  const token = localStorage.getItem('token');
+  const numberQuestions = 5;
+  const requestQuestions = await fetch(`https://opentdb.com/api.php?amount=${numberQuestions}&token=${token}`);
+  const questions = await requestQuestions.json();
+  return questions;
 };
