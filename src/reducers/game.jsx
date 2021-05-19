@@ -1,4 +1,4 @@
-import { GET_API, SCORE } from '../actions';
+import { GET_API, SCORE, RESET_GAME } from '../actions';
 
 const INITIAL_STATE = {
   responseCode: '',
@@ -35,6 +35,11 @@ export default function game(state = INITIAL_STATE, action) {
       },
     };
   }
+  case RESET_GAME:
+    return {
+      ...state,
+      ...INITIAL_STATE,
+    };
   default:
     return state;
   }
