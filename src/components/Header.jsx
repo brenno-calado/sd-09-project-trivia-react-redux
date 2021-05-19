@@ -57,10 +57,10 @@ Header.propTypes = {
   score: PropTypes.number.isRequired,
 }.isRequired;
 
-const mapStatetoProps = (state) => ({
+const mapStateToProps = (state) => ({
   name: state.user.name,
   email: state.user.email,
   score: state.game.gameBoard.score,
 });
 
-export default connect(mapStatetoProps, null)(Header);
+export default connect(mapStateToProps, null)(Header);
